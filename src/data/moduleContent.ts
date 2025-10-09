@@ -74,6 +74,32 @@ export const moduleContent: Record<number, ModuleContent> = {
         type: "short-answer",
         correctAnswer: "Regulatory agencies hold facility operators strictly liable for compliance violations regardless of intent or knowledge. Not knowing a regulation exists or applies to your facility does not exempt you from penalties, which can include fines, operational shutdowns, and even criminal liability. Facility engineers have a professional and legal obligation to understand applicable regulations.",
         explanation: "Strict liability means you are responsible for compliance whether you knew about the requirement or not. This is why systematic training and documentation are critical—they demonstrate due diligence and professional competence."
+      },
+      {
+        id: 4,
+        question: "Which regulatory standard specifically governs boiler and pressure vessel design and operation?",
+        type: "multiple-choice",
+        options: [
+          "OSHA 29 CFR 1910",
+          "ASME Boiler and Pressure Vessel Code (BPVC)",
+          "EPA Clean Air Act",
+          "NFPA 70 - National Electrical Code"
+        ],
+        correctAnswer: 1,
+        explanation: "The ASME Boiler and Pressure Vessel Code (BPVC) is the international standard for the design, fabrication, and inspection of boilers and pressure vessels. While OSHA references ASME standards, ASME BPVC is the primary technical authority."
+      },
+      {
+        id: 5,
+        question: "In the context of facility optimization, what is the primary benefit of predictive maintenance over reactive maintenance?",
+        type: "multiple-choice",
+        options: [
+          "It costs less to implement",
+          "It eliminates the need for spare parts inventory",
+          "It allows you to anticipate and prevent failures before they occur, minimizing downtime and optimizing maintenance schedules",
+          "It requires less technical knowledge"
+        ],
+        correctAnswer: 2,
+        explanation: "Predictive maintenance uses data and analytics to identify potential failures before they happen, allowing for planned interventions during scheduled downtime. This approach maximizes equipment reliability, extends asset life, and optimizes resource allocation—core principles of facility optimization."
       }
     ],
     reflectionPrompt: "Consider your current facility or a facility you're familiar with. Identify three areas where small deviations or 'normal but slightly off' conditions might indicate emerging problems. How would you systematically monitor and address these to prevent larger failures? What documentation would you create to demonstrate your proactive approach?",

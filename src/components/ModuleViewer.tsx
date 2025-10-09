@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ModuleContent } from "@/types/course";
 import { ArrowLeft, BookOpen, FileText, AlertCircle, CheckCircle2, Lightbulb } from "lucide-react";
 import { QuizSection } from "./QuizSection";
+import moduleBackground from "@/assets/module-background.jpeg";
 
 interface ModuleViewerProps {
   content: ModuleContent;
@@ -17,8 +18,15 @@ export const ModuleViewer = ({ content, onBack, onComplete }: ModuleViewerProps)
   const [quizCompleted, setQuizCompleted] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background py-8">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <div className="min-h-screen bg-background py-8 relative">
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 opacity-10 bg-cover bg-center bg-no-repeat pointer-events-none"
+        style={{ backgroundImage: `url(${moduleBackground})` }}
+      />
+      
+      {/* Content */}
+      <div className="container mx-auto px-4 max-w-5xl relative z-10">
         {/* Header */}
         <div className="mb-8">
           <Button 
