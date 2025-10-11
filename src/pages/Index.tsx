@@ -3,17 +3,39 @@ import { Hero } from "@/components/Hero";
 import { ModuleDashboard } from "@/components/ModuleDashboard";
 import { ModuleViewer } from "@/components/ModuleViewer";
 import { CompletionCertificate } from "@/components/CompletionCertificate";
+import { AuthForm } from "@/components/Auth/AuthForm";
 import { modules as initialModules } from "@/data/modules";
 import { moduleContent } from "@/data/moduleContent";
-import { Module } from "@/types/course";
+import { useAuth } from "@/hooks/useAuth";
+import { useUserProgress } from "@/hooks/useUserProgress";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
 
 type View = 'hero' | 'dashboard' | 'module' | 'certificate';
 
 const Index = () => {
+  const { user, loading: authLoading, signOut } = useAuth();
+  const { modules, loading: progressLoading, saveProgress } = useUserProgress(user?.id, initialModules);
   const [currentView, setCurrentView] = useState<View>('hero');
-  const [modules, setModules] = useState<Module[]>(initialModules);
   const [selectedModuleId, setSelectedModuleId] = useState<number | null>(null);
+
+  // Show auth form if not logged in
+  if (!user && !authLoading) {
+    return <AuthForm onSuccess={() => {}} />;
+  }
+
+  // Show loading while checking auth
+  if (authLoading || progressLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleGetStarted = () => {
     setCurrentView('dashboard');
@@ -29,22 +51,11 @@ const Index = () => {
     setSelectedModuleId(null);
   };
 
-  const handleModuleComplete = () => {
+  const handleModuleComplete = async () => {
     if (selectedModuleId === null) return;
 
-    // Mark current module as completed
-    const updatedModules = modules.map(module => {
-      if (module.id === selectedModuleId) {
-        return { ...module, completed: true };
-      }
-      // Unlock next module
-      if (module.id === selectedModuleId + 1) {
-        return { ...module, locked: false };
-      }
-      return module;
-    });
-
-    setModules(updatedModules);
+    // Save progress to database
+    const updatedModules = await saveProgress(selectedModuleId);
     
     // Check if all modules are completed
     const allCompleted = updatedModules.every(m => m.completed);
@@ -63,14 +74,32 @@ const Index = () => {
   const renderView = () => {
     switch (currentView) {
       case 'hero':
-        return <Hero onGetStarted={handleGetStarted} />;
+        return (
+          <>
+            <div className="absolute top-4 right-4 z-50">
+              <Button variant="outline" size="sm" onClick={signOut}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Sign Out
+              </Button>
+            </div>
+            <Hero onGetStarted={handleGetStarted} />
+          </>
+        );
       
       case 'dashboard':
         return (
-          <ModuleDashboard 
-            modules={modules} 
-            onModuleSelect={handleModuleSelect} 
-          />
+          <>
+            <div className="absolute top-4 right-4 z-50">
+              <Button variant="outline" size="sm" onClick={signOut}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Sign Out
+              </Button>
+            </div>
+            <ModuleDashboard 
+              modules={modules} 
+              onModuleSelect={handleModuleSelect} 
+            />
+          </>
         );
       
       case 'module':
