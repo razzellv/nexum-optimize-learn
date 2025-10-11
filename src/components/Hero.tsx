@@ -3,9 +3,10 @@ import { ArrowRight, Award, TrendingUp, ShieldCheck } from "lucide-react";
 
 interface HeroProps {
   onGetStarted: () => void;
+  onViewCurriculum: () => void;
 }
 
-export const Hero = ({ onGetStarted }: HeroProps) => {
+export const Hero = ({ onGetStarted, onViewCurriculum }: HeroProps) => {
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-hero">
       {/* Animated background elements */}
@@ -73,6 +74,7 @@ export const Hero = ({ onGetStarted }: HeroProps) => {
             <Button 
               variant="outline" 
               size="lg"
+              onClick={onViewCurriculum}
               className="text-lg px-8 py-6 bg-card/20 backdrop-blur-sm border-primary-foreground/30 text-primary-foreground hover:bg-card/30"
             >
               View Curriculum

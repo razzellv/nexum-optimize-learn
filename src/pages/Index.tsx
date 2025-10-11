@@ -10,11 +10,13 @@ import { useAuth } from "@/hooks/useAuth";
 import { useUserProgress } from "@/hooks/useUserProgress";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
+import { LogOut, Rss, Video } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type View = 'hero' | 'dashboard' | 'module' | 'certificate';
 
 const Index = () => {
+  const navigate = useNavigate();
   const { user, loading: authLoading, signOut } = useAuth();
   const { modules, loading: progressLoading, saveProgress } = useUserProgress(user?.id, initialModules);
   const [currentView, setCurrentView] = useState<View>('hero');
@@ -38,6 +40,10 @@ const Index = () => {
   }
 
   const handleGetStarted = () => {
+    setCurrentView('dashboard');
+  };
+
+  const handleViewCurriculum = () => {
     setCurrentView('dashboard');
   };
 
@@ -76,20 +82,36 @@ const Index = () => {
       case 'hero':
         return (
           <>
-            <div className="absolute top-4 right-4 z-50">
+            <div className="absolute top-4 right-4 z-50 flex gap-2">
+              <Button variant="outline" size="sm" onClick={() => navigate('/feed')}>
+                <Rss className="w-4 h-4 mr-2" />
+                Industry Feed
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => navigate('/videos')}>
+                <Video className="w-4 h-4 mr-2" />
+                Videos
+              </Button>
               <Button variant="outline" size="sm" onClick={signOut}>
                 <LogOut className="w-4 h-4 mr-2" />
                 Sign Out
               </Button>
             </div>
-            <Hero onGetStarted={handleGetStarted} />
+            <Hero onGetStarted={handleGetStarted} onViewCurriculum={handleViewCurriculum} />
           </>
         );
       
       case 'dashboard':
         return (
           <>
-            <div className="absolute top-4 right-4 z-50">
+            <div className="absolute top-4 right-4 z-50 flex gap-2">
+              <Button variant="outline" size="sm" onClick={() => navigate('/feed')}>
+                <Rss className="w-4 h-4 mr-2" />
+                Industry Feed
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => navigate('/videos')}>
+                <Video className="w-4 h-4 mr-2" />
+                Videos
+              </Button>
               <Button variant="outline" size="sm" onClick={signOut}>
                 <LogOut className="w-4 h-4 mr-2" />
                 Sign Out
@@ -130,7 +152,7 @@ const Index = () => {
         );
       
       default:
-        return <Hero onGetStarted={handleGetStarted} />;
+        return <Hero onGetStarted={handleGetStarted} onViewCurriculum={handleViewCurriculum} />;
     }
   };
 
