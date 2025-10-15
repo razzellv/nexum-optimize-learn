@@ -3,9 +3,12 @@ import { Hero } from "@/components/Hero";
 import { ModuleDashboard } from "@/components/ModuleDashboard";
 import { ModuleViewer } from "@/components/ModuleViewer";
 import { CompletionCertificate } from "@/components/CompletionCertificate";
+import { CourseSelector } from "@/components/CourseSelector";
+import { FinalExam } from "@/components/FinalExam";
 import { AuthForm } from "@/components/Auth/AuthForm";
-import { modules as initialModules } from "@/data/modules";
+import { courses } from "@/data/courses";
 import { moduleContent } from "@/data/moduleContent";
+import { hvacModuleContent } from "@/data/hvacModuleContent";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserProgress } from "@/hooks/useUserProgress";
 import { toast } from "sonner";
@@ -13,13 +16,14 @@ import { Button } from "@/components/ui/button";
 import { LogOut, Rss, Video } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-type View = 'hero' | 'dashboard' | 'module' | 'certificate';
+type View = 'hero' | 'courses' | 'dashboard' | 'module' | 'final-exam' | 'certificate';
 
 const Index = () => {
   const navigate = useNavigate();
   const { user, loading: authLoading, signOut } = useAuth();
-  const { modules, loading: progressLoading, saveProgress } = useUserProgress(user?.id, initialModules);
+  const { getCourseModules, getCourseProgress, loading: progressLoading, saveProgress } = useUserProgress(user?.id);
   const [currentView, setCurrentView] = useState<View>('hero');
+  const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [selectedModuleId, setSelectedModuleId] = useState<number | null>(null);
 
   // Show auth form if not logged in
@@ -40,10 +44,15 @@ const Index = () => {
   }
 
   const handleGetStarted = () => {
-    setCurrentView('dashboard');
+    setCurrentView('courses');
   };
 
   const handleViewCurriculum = () => {
+    setCurrentView('courses');
+  };
+
+  const handleSelectCourse = (courseId: string) => {
+    setSelectedCourseId(courseId);
     setCurrentView('dashboard');
   };
 
@@ -57,24 +66,44 @@ const Index = () => {
     setSelectedModuleId(null);
   };
 
+  const handleBackToCourses = () => {
+    setSelectedCourseId(null);
+    setCurrentView('courses');
+  };
+
   const handleModuleComplete = async () => {
-    if (selectedModuleId === null) return;
+    if (selectedModuleId === null || !selectedCourseId) return;
 
     // Save progress to database
-    const updatedModules = await saveProgress(selectedModuleId);
+    await saveProgress(selectedCourseId, selectedModuleId, 100);
     
-    // Check if all modules are completed
+    const updatedModules = getCourseModules(selectedCourseId);
+    
+    // Check if all modules in current course are completed
     const allCompleted = updatedModules.every(m => m.completed);
     
     if (allCompleted) {
-      toast.success("Congratulations! You've completed all modules!");
-      setTimeout(() => {
-        setCurrentView('certificate');
-      }, 2000);
+      toast.success("Course completed! All modules finished.");
+      handleBackToCourses();
     } else {
       toast.success("Module completed! Next module unlocked.");
       handleBackToDashboard();
     }
+  };
+
+  const handleFinalExamComplete = (passed: boolean, score: number) => {
+    if (passed) {
+      toast.success(`Congratulations! You passed with ${score.toFixed(1)}%`);
+      setTimeout(() => {
+        setCurrentView('certificate');
+      }, 2000);
+    } else {
+      toast.error(`Not passed. Score: ${score.toFixed(1)}%`);
+    }
+  };
+
+  const handleStartFinalExam = () => {
+    setCurrentView('final-exam');
   };
 
   const renderView = () => {
@@ -100,7 +129,18 @@ const Index = () => {
           </>
         );
       
-      case 'dashboard':
+      case 'courses':
+        const courseProgressMap = courses.reduce((acc, course) => {
+          const progress = getCourseProgress(course.id);
+          acc[course.id] = progress;
+          return acc;
+        }, {} as Record<string, { completed: number; total: number }>);
+
+        const allCoursesCompleted = courses.every(c => {
+          const progress = courseProgressMap[c.id];
+          return progress.completed === progress.total;
+        });
+
         return (
           <>
             <div className="absolute top-4 right-4 z-50 flex gap-2">
@@ -117,20 +157,66 @@ const Index = () => {
                 Sign Out
               </Button>
             </div>
+            <CourseSelector
+              courses={courses}
+              onSelectCourse={handleSelectCourse}
+              courseProgress={courseProgressMap}
+            />
+            {allCoursesCompleted && (
+              <div className="fixed bottom-8 right-8">
+                <Button size="lg" onClick={handleStartFinalExam}>
+                  Take Final Exam
+                </Button>
+              </div>
+            )}
+          </>
+        );
+      
+      case 'dashboard':
+        if (!selectedCourseId) return null;
+        const currentModules = getCourseModules(selectedCourseId);
+        return (
+          <>
+            <div className="absolute top-4 left-4 z-50">
+              <Button variant="outline" size="sm" onClick={handleBackToCourses}>
+                ← Back to Courses
+              </Button>
+            </div>
+            <div className="absolute top-4 right-4 z-50 flex gap-2">
+              <Button variant="outline" size="sm" onClick={() => navigate('/feed')}>
+                <Rss className="w-4 h-4 mr-2" />
+                Industry Feed
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => navigate('/videos')}>
+                <Video className="w-4 h-4 mr-2" />
+                Videos
+              </Button>
+              <Button variant="outline" size="sm" onClick={signOut}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Sign Out
+              </Button>
+            </div>
             <ModuleDashboard 
-              modules={modules} 
+              modules={currentModules} 
               onModuleSelect={handleModuleSelect} 
             />
           </>
         );
       
       case 'module':
-        if (selectedModuleId === null) return null;
-        const content = moduleContent[selectedModuleId];
+        if (selectedModuleId === null || !selectedCourseId) return null;
+        const contentMap = selectedCourseId === "facility-optimization" ? moduleContent : hvacModuleContent;
+        const content = contentMap[selectedModuleId];
         if (!content) {
-          toast.error("Module content not available yet");
-          handleBackToDashboard();
-          return null;
+          return (
+            <div className="min-h-screen flex items-center justify-center">
+              <div className="text-center">
+                <h2 className="text-2xl font-bold mb-4">Module content not yet available</h2>
+                <p className="text-muted-foreground mb-6">This module content is being developed.</p>
+                <Button onClick={handleBackToDashboard}>Back to Dashboard</Button>
+              </div>
+            </div>
+          );
         }
         return (
           <ModuleViewer 
@@ -139,6 +225,9 @@ const Index = () => {
             onComplete={handleModuleComplete}
           />
         );
+      
+      case 'final-exam':
+        return <FinalExam onComplete={handleFinalExamComplete} onBack={handleBackToCourses} />;
       
       case 'certificate':
         return (
