@@ -11,7 +11,7 @@ export interface Module {
 export interface QuizQuestion {
   id: number;
   question: string;
-  type: 'multiple-choice' | 'short-answer';
+  type: 'multiple-choice' | 'short-answer' | 'math' | 'system-literacy';
   options?: string[];
   correctAnswer: string | number;
   explanation: string;
@@ -32,7 +32,26 @@ export interface ModuleContent {
     title: string;
     items: string[];
   };
+  sopExample?: string;
   quiz: QuizQuestion[];
   reflectionPrompt: string;
   keyTakeaways: string[];
+}
+
+export interface Course {
+  id: string;
+  title: string;
+  description: string;
+  modules: Module[];
+}
+
+export interface FinalExamQuestion extends QuizQuestion {
+  hints: string[];
+}
+
+export interface FinalExamAttempt {
+  attemptNumber: number;
+  score: number;
+  timestamp: Date;
+  hintsUsed: number;
 }
