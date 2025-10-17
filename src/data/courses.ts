@@ -1,6 +1,7 @@
 import { Course } from "@/types/course";
 import { modules as facilityModules } from "./modules";
 import { hvacModules } from "./hvacModules";
+import { thermodynamicsModules } from "./thermodynamicsModules";
 
 export const courses: Course[] = [
   {
@@ -14,5 +15,11 @@ export const courses: Course[] = [
     title: "Facility HVAC Optimization Mastery: Compliance, Chemistry, and Control",
     description: "Master HVAC systems, chemistry, troubleshooting, and data-driven optimization strategies",
     modules: hvacModules,
+  },
+  {
+    id: "thermodynamics-tech",
+    title: "HVAC Thermodynamics & Smart Technology Integration",
+    description: "Master thermodynamics principles, heat transfer, HVAC history, and AI/IoT integration in modern climate control systems",
+    modules: thermodynamicsModules,
   },
 ];
