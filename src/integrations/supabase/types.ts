@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      compliance_files: {
+        Row: {
+          created_at: string | null
+          file_name: string
+          file_path: string
+          file_url: string
+          id: string
+          updated_at: string | null
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          file_name: string
+          file_path: string
+          file_url: string
+          id?: string
+          updated_at?: string | null
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          file_name?: string
+          file_path?: string
+          file_url?: string
+          id?: string
+          updated_at?: string | null
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
       user_progress: {
         Row: {
           completed: boolean

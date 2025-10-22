@@ -9,6 +9,8 @@ import { AuthForm } from "@/components/Auth/AuthForm";
 import { courses } from "@/data/courses";
 import { moduleContent } from "@/data/moduleContent";
 import { hvacModuleContent } from "@/data/hvacModuleContent";
+import { thermodynamicsModuleContent } from "@/data/thermodynamicsModuleContent";
+import { specialistModuleContent } from "@/data/specialistModuleContent";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserProgress } from "@/hooks/useUserProgress";
 import { toast } from "sonner";
@@ -205,7 +207,21 @@ const Index = () => {
       
       case 'module':
         if (selectedModuleId === null || !selectedCourseId) return null;
-        const contentMap = selectedCourseId === "facility-optimization" ? moduleContent : hvacModuleContent;
+        
+        // Map course ID to content
+        let contentMap;
+        if (selectedCourseId === "facility-optimization") {
+          contentMap = moduleContent;
+        } else if (selectedCourseId === "hvac-optimization") {
+          contentMap = hvacModuleContent;
+        } else if (selectedCourseId === "thermodynamics-tech") {
+          contentMap = thermodynamicsModuleContent;
+        } else if (selectedCourseId === "career-specialist") {
+          contentMap = specialistModuleContent;
+        } else {
+          contentMap = {};
+        }
+        
         const content = contentMap[selectedModuleId];
         if (!content) {
           return (
