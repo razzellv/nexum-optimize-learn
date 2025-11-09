@@ -6,6 +6,15 @@ import { Upload, FileText, ExternalLink, Trash2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
+import { z } from "zod";
+
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+
+const fileUploadSchema = z.object({
+  name: z.string().min(1, "File name is required").max(255, "File name too long"),
+  size: z.number().max(MAX_FILE_SIZE, "File size must be less than 50MB"),
+  type: z.literal("application/pdf", { errorMap: () => ({ message: "Only PDF files are allowed" }) })
+});
 
 interface ComplianceFile {
   id: string;
@@ -108,8 +117,26 @@ const Compliance = () => {
 
     for (const file of filesToUpload) {
       try {
-        const fileExt = file.name.split('.').pop();
-        const fileName = `${Math.random()}.${fileExt}`;
+        // Validate file
+        const validation = fileUploadSchema.safeParse({
+          name: file.name,
+          size: file.size,
+          type: file.type
+        });
+
+        if (!validation.success) {
+          toast({
+            title: "Invalid file",
+            description: validation.error.errors[0].message,
+            variant: "destructive",
+          });
+          continue;
+        }
+
+        // Sanitize filename and use crypto for random generation
+        const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+        const fileExt = sanitizedName.split('.').pop();
+        const fileName = `${crypto.randomUUID()}.${fileExt}`;
         const filePath = `${fileName}`;
 
         const { error: uploadError } = await supabase.storage
@@ -125,7 +152,7 @@ const Compliance = () => {
         const { error: dbError } = await supabase
           .from('compliance_files')
           .insert({
-            file_name: file.name,
+            file_name: sanitizedName,
             file_path: filePath,
             file_url: publicUrl,
             uploaded_by: user?.id,
@@ -135,7 +162,7 @@ const Compliance = () => {
 
         toast({
           title: "File uploaded",
-          description: `${file.name} uploaded successfully`,
+          description: `${sanitizedName} uploaded successfully`,
         });
       } catch (error: any) {
         toast({
