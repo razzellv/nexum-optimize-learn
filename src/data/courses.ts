@@ -3,6 +3,7 @@ import { modules as facilityModules } from "./modules";
 import { hvacModules } from "./hvacModules";
 import { thermodynamicsModules } from "./thermodynamicsModules";
 import { specialistModules } from "./specialistModules";
+import { facilityIntelligenceModules } from "./facilityIntelligenceModules";
 
 export const courses: Course[] = [
   {
@@ -28,5 +29,11 @@ export const courses: Course[] = [
     title: "Career Specialist Assessment",
     description: "Comprehensive aptitude assessment to discover your ideal career paths based on your unique strengths, values, and aspirations",
     modules: specialistModules,
+  },
+  {
+    id: "facility-intelligence",
+    title: "Facility Intelligence Engineer Certification",
+    description: "Comprehensive training on the Nexum Suum SaaS ecosystem and real facility operations—from VVFI to boilers, chillers, compliance, emergency protocols, and professional leadership",
+    modules: facilityIntelligenceModules,
   },
 ];

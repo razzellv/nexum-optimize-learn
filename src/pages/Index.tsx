@@ -11,6 +11,7 @@ import { moduleContent } from "@/data/moduleContent";
 import { hvacModuleContent } from "@/data/hvacModuleContent";
 import { thermodynamicsModuleContent } from "@/data/thermodynamicsModuleContent";
 import { specialistModuleContent } from "@/data/specialistModuleContent";
+import { facilityIntelligenceModuleContent } from "@/data/facilityIntelligenceModuleContent";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserProgress } from "@/hooks/useUserProgress";
 import { toast } from "sonner";
