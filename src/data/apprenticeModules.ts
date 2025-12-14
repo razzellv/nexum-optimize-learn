@@ -1,6 +1,6 @@
-import { Module } from "@/types/course";
+import { ApprenticeModule } from "@/types/apprentice";
 
-export const apprenticeModules: Module[] = [
+export const apprenticeModules: ApprenticeModule[] = [
   {
     id: 1,
     title: "Facility Intelligence Foundations",

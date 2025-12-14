@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Award, TrendingUp, ShieldCheck } from "lucide-react";
+import { ArrowRight, Award, TrendingUp, ShieldCheck, GraduationCap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface HeroProps {
   onGetStarted: () => void;
@@ -7,6 +8,8 @@ interface HeroProps {
 }
 
 export const Hero = ({ onGetStarted, onViewCurriculum }: HeroProps) => {
+  const navigate = useNavigate();
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-hero">
       {/* Animated background elements */}
@@ -38,6 +41,18 @@ export const Hero = ({ onGetStarted, onViewCurriculum }: HeroProps) => {
             Master facility engineering with AI-powered training that combines technical excellence, 
             regulatory compliance, and forward-thinking leadership for the engineer of 2035.
           </p>
+
+          {/* Free Apprentice Program Banner */}
+          <div 
+            onClick={() => navigate('/apprentice')}
+            className="inline-flex items-center gap-3 bg-success/20 border border-success/40 rounded-full px-6 py-3 cursor-pointer hover:bg-success/30 transition-all"
+          >
+            <GraduationCap className="w-5 h-5 text-success" />
+            <span className="text-primary-foreground font-medium">
+              Free: Facility Intelligence Apprentice Certification
+            </span>
+            <ArrowRight className="w-4 h-4 text-success" />
+          </div>
 
           {/* Feature highlights */}
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-8">

@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import IndustryFeed from "./pages/IndustryFeed";
 import Videos from "./pages/Videos";
 import Compliance from "./pages/Compliance";
+import ApprenticeLMS from "./pages/ApprenticeLMS";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/apprentice" element={<ApprenticeLMS />} />
           <Route path="/feed" element={<IndustryFeed />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/compliance" element={<Compliance />} />
