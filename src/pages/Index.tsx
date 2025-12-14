@@ -14,14 +14,25 @@ import { facilityIntelligenceModuleContent } from "@/data/facilityIntelligenceMo
 import { useUserProgress } from "@/hooks/useUserProgress";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { Rss, Video } from "lucide-react";
+import { Rss, Video, RotateCcw } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useNavigate } from "react-router-dom";
 
 type View = 'hero' | 'courses' | 'dashboard' | 'module' | 'final-exam' | 'certificate';
 
 const Index = () => {
   const navigate = useNavigate();
-  const { getCourseModules, getCourseProgress, loading: progressLoading, saveProgress } = useUserProgress();
+  const { getCourseModules, getCourseProgress, loading: progressLoading, saveProgress, resetProgress } = useUserProgress();
   const [currentView, setCurrentView] = useState<View>('hero');
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [selectedModuleId, setSelectedModuleId] = useState<number | null>(null);
@@ -70,7 +81,7 @@ const Index = () => {
     if (selectedModuleId === null || !selectedCourseId) return;
 
     // Save progress (session-based)
-    saveProgress(selectedCourseId, selectedModuleId, 100);
+    saveProgress(selectedCourseId, selectedModuleId);
     
     const updatedModules = getCourseModules(selectedCourseId);
     
@@ -135,6 +146,32 @@ const Index = () => {
         return (
           <>
             <div className="absolute top-4 right-4 z-50 flex gap-2">
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    <RotateCcw className="w-4 h-4 mr-2" />
+                    Reset Progress
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Reset All Progress?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This will clear all your course progress and start fresh. This action cannot be undone.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => {
+                      resetProgress();
+                      setCurrentView('hero');
+                      toast.success("Progress has been reset");
+                    }}>
+                      Reset
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
               <Button variant="outline" size="sm" onClick={() => navigate('/feed')}>
                 <Rss className="w-4 h-4 mr-2" />
                 Industry Feed
