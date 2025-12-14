@@ -5,37 +5,29 @@ import { ModuleViewer } from "@/components/ModuleViewer";
 import { CompletionCertificate } from "@/components/CompletionCertificate";
 import { CourseSelector } from "@/components/CourseSelector";
 import { FinalExam } from "@/components/FinalExam";
-import { AuthForm } from "@/components/Auth/AuthForm";
 import { courses } from "@/data/courses";
 import { moduleContent } from "@/data/moduleContent";
 import { hvacModuleContent } from "@/data/hvacModuleContent";
 import { thermodynamicsModuleContent } from "@/data/thermodynamicsModuleContent";
 import { specialistModuleContent } from "@/data/specialistModuleContent";
 import { facilityIntelligenceModuleContent } from "@/data/facilityIntelligenceModuleContent";
-import { useAuth } from "@/hooks/useAuth";
 import { useUserProgress } from "@/hooks/useUserProgress";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { LogOut, Rss, Video } from "lucide-react";
+import { Rss, Video } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 type View = 'hero' | 'courses' | 'dashboard' | 'module' | 'final-exam' | 'certificate';
 
 const Index = () => {
   const navigate = useNavigate();
-  const { user, loading: authLoading, signOut } = useAuth();
-  const { getCourseModules, getCourseProgress, loading: progressLoading, saveProgress } = useUserProgress(user?.id);
+  const { getCourseModules, getCourseProgress, loading: progressLoading, saveProgress } = useUserProgress();
   const [currentView, setCurrentView] = useState<View>('hero');
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [selectedModuleId, setSelectedModuleId] = useState<number | null>(null);
 
-  // Show auth form if not logged in
-  if (!user && !authLoading) {
-    return <AuthForm onSuccess={() => {}} />;
-  }
-
-  // Show loading while checking auth
-  if (authLoading || progressLoading) {
+  // Show loading while initializing
+  if (progressLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -77,8 +69,8 @@ const Index = () => {
   const handleModuleComplete = async () => {
     if (selectedModuleId === null || !selectedCourseId) return;
 
-    // Save progress to database
-    await saveProgress(selectedCourseId, selectedModuleId, 100);
+    // Save progress (session-based)
+    saveProgress(selectedCourseId, selectedModuleId, 100);
     
     const updatedModules = getCourseModules(selectedCourseId);
     
@@ -123,10 +115,6 @@ const Index = () => {
                 <Video className="w-4 h-4 mr-2" />
                 Videos
               </Button>
-              <Button variant="outline" size="sm" onClick={signOut}>
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
-              </Button>
             </div>
             <Hero onGetStarted={handleGetStarted} onViewCurriculum={handleViewCurriculum} />
           </>
@@ -154,10 +142,6 @@ const Index = () => {
               <Button variant="outline" size="sm" onClick={() => navigate('/videos')}>
                 <Video className="w-4 h-4 mr-2" />
                 Videos
-              </Button>
-              <Button variant="outline" size="sm" onClick={signOut}>
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
               </Button>
             </div>
             <CourseSelector
@@ -193,10 +177,6 @@ const Index = () => {
               <Button variant="outline" size="sm" onClick={() => navigate('/videos')}>
                 <Video className="w-4 h-4 mr-2" />
                 Videos
-              </Button>
-              <Button variant="outline" size="sm" onClick={signOut}>
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
               </Button>
             </div>
             <ModuleDashboard 
