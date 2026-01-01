@@ -3,1012 +3,724 @@ import { ModuleContent } from "@/types/course";
 export const facilityIntelligenceModuleContent: Record<number, ModuleContent> = {
   1: {
     id: 1,
-    title: "Introduction to Facility Intelligence™",
-    objective: "Understand the Nexum Suum ecosystem, data-driven facility management, and professional operational standards",
-    duration: "90 minutes",
+    title: "Facility Systems as Integrated Operations",
+    objective: "Recognize facilities as integrated systems where HVAC, utilities, maintenance, and compliance depend on each other",
+    duration: "60 minutes",
     narrationScript: [
-      "Welcome to the Facility Intelligence Engineer Certification program by Nexum Suum.",
-      "Facility Intelligence represents the convergence of operational excellence, digital systems, and continuous improvement.",
-      "This module introduces you to the complete Nexum Suum SaaS ecosystem and establishes the foundation for professional facility management.",
-      "You will learn how to navigate the Portal, understand data flow between systems, and embrace virtuous operational behaviors.",
-      "By the end of this module, you'll understand why digital transformation is essential for modern facility operations."
+      "Facilities are not collections of independent equipment. They are integrated systems where HVAC, electrical, plumbing, fire protection, and building envelope all influence each other.",
+      "When a chiller underperforms, it affects air handling, occupant comfort, and energy costs. When a boiler fails, it can shut down an entire operation.",
+      "Most facility problems arise not from equipment failure alone, but from managing systems in isolation without understanding their connections.",
+      "This module establishes the foundation: you will learn to see your facility as a whole, identify system interdependencies, and recognize where isolated thinking creates operational blind spots.",
+      "The goal is not to make you an expert in every system, but to help you ask the right questions when something does not look right."
     ],
     scenario: {
-      title: "Day One: New Facility Intelligence Engineer",
-      description: "Your first day as a Facility Intelligence Engineer at a 500,000 sq ft manufacturing facility",
-      situation: "You arrive at the facility and are given access to the Nexum Suum Portal. Your supervisor explains that the facility recently transitioned from paper logs to the digital ecosystem. Your task is to familiarize yourself with the dashboard, review yesterday's boiler and chiller logs, and identify any outstanding compliance items. The plant manager expects a brief summary by end of shift."
+      title: "The Cascading Comfort Complaint",
+      description: "A tenant complaint reveals multiple interconnected issues",
+      situation: "Building occupants on the third floor report persistent temperature fluctuations. The HVAC technician checks the air handler and finds nothing wrong. The problem continues. You are asked to investigate. Walking the floor, you notice the VAV boxes are hunting, supply air temperature is inconsistent, and the chilled water supply temp is 2°F higher than setpoint. The chiller logs show the condenser water temperature has been elevated for three days. The cooling tower basin is low and the blowdown valve was left partially open after maintenance. A single oversight cascaded through four connected systems."
     },
     standards: {
-      title: "Professional Standards for Facility Intelligence Engineers",
+      title: "Integrated Operations Standards",
       items: [
-        "Complete daily system checks using digital logs within the first 2 hours of shift",
-        "Maintain 100% accuracy in data entry for all operational parameters",
-        "Respond to system alerts within 15 minutes during operating hours",
-        "Document all abnormal conditions with photos and detailed descriptions",
-        "Review VVFI recommendations daily and implement corrective actions",
-        "Communicate critical issues to supervisors immediately using professional protocols",
-        "Maintain current knowledge of all connected facility systems",
-        "Demonstrate virtuous behaviors: discipline, accountability, honesty, and continuous improvement"
+        "View equipment issues in context of connected systems, not in isolation",
+        "Trace symptoms upstream and downstream before concluding root cause",
+        "Verify that maintenance activities on one system do not create problems in others",
+        "Communicate across trades when troubleshooting cross-system issues",
+        "Document system interconnections in facility operating procedures",
+        "Review utility and equipment data together, not separately",
+        "Question single-point fixes when symptoms suggest broader issues"
       ]
     },
     quiz: [
       {
         id: 1,
-        question: "What are the core components of the Nexum Suum SaaS ecosystem?",
+        question: "A boiler fails unexpectedly. What is the FIRST systems-level question you should ask?",
         type: "multiple-choice",
         options: [
-          "Portal, VVFI, Boiler Log, Chiller Log, Compliance Log, Training Center, AI Engine, Digital Workbooks",
-          "Only Boiler Log and Chiller Log",
-          "Portal and AI Engine only",
-          "Training Center and Compliance Log only"
+          "How quickly can we get a replacement boiler?",
+          "What other building systems and operations depend on this boiler, and what is the immediate impact?",
+          "Who was the last person to service it?",
+          "What brand of boiler should we buy next?"
         ],
-        correctAnswer: 0,
-        explanation: "The complete Nexum Suum ecosystem includes all eight integrated components: Portal, VVFI, Boiler Log, Chiller Log, Compliance Log, Training Center, AI Engine, and Digital Workbooks."
+        correctAnswer: 1,
+        explanation: "Before focusing on repair or replacement, you need to understand the scope of impact. A boiler failure can affect heating, process steam, domestic hot water, humidification, and production—each with different urgency levels."
       },
       {
         id: 2,
-        question: "Why are digital logs superior to paper logs for facility operations?",
+        question: "An HVAC technician fixes a VAV box, but the comfort complaint returns within a day. What does this suggest?",
         type: "multiple-choice",
         options: [
-          "They're easier to lose",
-          "Real-time data analysis, trend tracking, instant alerts, accessibility, and permanent documentation",
-          "They require less training",
-          "They're cheaper to implement"
+          "The technician made an error",
+          "The root cause may be upstream or downstream of the VAV box in the connected system",
+          "The occupants are too sensitive",
+          "The VAV box needs to be replaced"
         ],
         correctAnswer: 1,
-        explanation: "Digital logs provide real-time analytics, automatic trend detection, instant alerting for abnormal conditions, multi-user accessibility, and permanent, searchable documentation—capabilities impossible with paper systems."
+        explanation: "When a fix does not hold, look beyond the immediate component. The VAV may be responding to inconsistent supply air temperature, incorrect pressure, or a problem originating elsewhere in the air or water systems."
       },
       {
         id: 3,
-        question: "What is the primary role of a Facility Intelligence Engineer?",
+        question: "Why do facilities managed in silos often have higher operating costs?",
         type: "multiple-choice",
         options: [
-          "Only monitor equipment",
-          "Integrate data-driven decision making with operational excellence to optimize facility systems",
-          "Replace all maintenance staff",
-          "Only complete paperwork"
+          "Because silo management requires more staff",
+          "Because problems in one system go unrecognized until they cause failures or inefficiencies in connected systems",
+          "Because silo managers are less experienced",
+          "Because equipment costs more when purchased separately"
         ],
         correctAnswer: 1,
-        explanation: "Facility Intelligence Engineers combine technical expertise with data analytics to optimize systems, predict issues, ensure compliance, and drive continuous improvement across all facility operations."
+        explanation: "Silo management delays recognition of interconnected issues. A small water chemistry problem becomes a heat exchanger failure. A damper actuator issue becomes an energy waste problem. Integration reduces these cascading costs."
       },
       {
         id: 4,
-        question: "Which virtuous behavior is most critical when documenting a system failure?",
+        question: "What is the primary risk of treating equipment symptoms without investigating system context?",
         type: "multiple-choice",
         options: [
-          "Speed over accuracy",
-          "Honesty and complete documentation, even if it reveals operational mistakes",
-          "Minimal detail to save time",
-          "Only document successful operations"
+          "The repair takes longer",
+          "You may fix the symptom while the actual cause damages other equipment or continues creating waste",
+          "The warranty may be voided",
+          "The technician may get injured"
         ],
         correctAnswer: 1,
-        explanation: "Honesty and thorough documentation are essential for root cause analysis, preventing future failures, and maintaining operational integrity. Incomplete or dishonest documentation compromises safety and efficiency."
+        explanation: "Symptom-focused repairs often leave root causes unaddressed. The chiller that keeps tripping on high head pressure may have a condenser issue, a cooling tower problem, or an undersized water pipe—each requiring different action."
       }
     ],
-    reflectionPrompt: "Reflect on how transitioning from reactive maintenance to intelligent, data-driven facility management can transform your role and career trajectory. What specific skills will you need to develop?",
+    reflectionPrompt: "Think of a recurring problem at your facility. Have you traced it through all connected systems, or has the investigation stayed within one trade or equipment type?",
     keyTakeaways: [
-      "Facility Intelligence combines operational expertise with digital systems and data analytics",
-      "The Nexum Suum ecosystem provides integrated tools for all aspects of facility management",
-      "Digital logs enable real-time monitoring, predictive analytics, and continuous improvement",
-      "Professional standards require discipline, accuracy, timely response, and clear communication",
-      "Virtuous behaviors (discipline, accountability, honesty) are foundational to operational excellence",
-      "Data-driven decision making replaces reactive, intuition-based operations"
+      "Facilities are integrated systems—HVAC, utilities, structure, and operations all influence each other",
+      "Problems often cascade: a single oversight can create symptoms in multiple systems",
+      "Trace issues upstream and downstream before concluding root cause",
+      "Cross-trade communication is essential for resolving systemic problems",
+      "Isolated thinking creates blind spots that increase costs and risks",
+      "The goal is to ask the right questions, not to know every technical detail"
     ]
   },
 
   2: {
     id: 2,
-    title: "VVFI: Virtual Virtuous Facility Instructor",
-    objective: "Master the use of VVFI for system diagnosis, compliance analysis, and operational guidance",
+    title: "Reading Building Conditions",
+    objective: "Translate gauge readings, physical indicators, and equipment behavior into operational intelligence",
     duration: "75 minutes",
     narrationScript: [
-      "VVFI—the Virtual Virtuous Facility Instructor—is your AI-powered expert assistant for facility operations.",
-      "VVFI can analyze photos of equipment, interpret log data, diagnose issues, and recommend corrective actions.",
-      "Understanding how to properly use VVFI's capabilities will dramatically accelerate your troubleshooting and decision-making.",
-      "This module teaches you prompt engineering, photo analysis workflows, and how to leverage VVFI for compliance and PM optimization.",
-      "VVFI is not a replacement for your expertise—it's a force multiplier that helps you work smarter and faster."
+      "A facility tells you how it is performing if you know how to read it. Gauges, temperatures, sounds, smells, and visual cues all provide information.",
+      "Too many operators wait for alarms or automated alerts. By the time an alarm sounds, the condition has often already caused damage, waste, or discomfort.",
+      "Reading building conditions means developing situational awareness—the ability to notice when something is not right before it becomes a problem.",
+      "This module teaches you to interpret operational data and physical indicators systematically, so you can assess facility health without relying solely on automation.",
+      "The best facility operators walk through their buildings with purpose. They listen, observe, and compare what they see to what they expect."
     ],
     scenario: {
-      title: "Chiller High Approach Temperature Alert",
-      description: "Using VVFI to diagnose a condenser issue",
-      situation: "At 10:30 AM, you receive an alert: Chiller #2 approach temperature has increased from 3°F to 7°F over the past 4 hours. The chiller is still running, but efficiency is declining. You take photos of the condenser gauge panel, the cooling tower sump, and the tube bundle access panel. You upload these to VVFI with a prompt: 'Chiller 2 approach temp rising. See attached photos. What should I check?' VVFI responds with a step-by-step diagnostic protocol."
+      title: "The Walk-Through That Prevented a Shutdown",
+      description: "Recognizing early warning signs during a routine inspection",
+      situation: "During a morning walk-through of the mechanical room, you notice the condensate pump is cycling more frequently than usual—about every 90 seconds instead of every 3-4 minutes. The pump sounds normal, no alarms are present, and the steam system appears to be operating. You check the steam trap station upstream and find one trap has failed open, dumping live steam into the condensate system. Catching this early prevented waterlogging of the heating coils, potential water hammer, and an unplanned shutdown during a cold snap."
     },
     standards: {
-      title: "VVFI Usage Standards",
+      title: "Condition Assessment Standards",
       items: [
-        "Always provide clear, specific prompts with relevant context (equipment ID, readings, timeline)",
-        "Upload high-quality photos showing gauges, nameplates, and problem areas clearly",
-        "Review VVFI recommendations before taking action—validate against your knowledge",
-        "Document VVFI recommendations and actions taken in system logs",
-        "Use VVFI Compliance Analyzer for all regulatory document reviews",
-        "Respect daily prompt limits—prioritize critical issues",
-        "Never rely solely on VVFI for life-safety decisions—escalate to supervisors",
-        "Provide feedback when VVFI recommendations are particularly helpful or inaccurate"
+        "Conduct deliberate walk-throughs of mechanical spaces at least once per shift",
+        "Compare current readings to baseline values and recent trends, not just to alarm setpoints",
+        "Listen for abnormal sounds: grinding, cavitation, hunting, short-cycling, or unusual vibration",
+        "Check for visual indicators: leaks, corrosion, discoloration, ice formation, or component damage",
+        "Note unusual smells: electrical burning, refrigerant, fuel, mold, or hot bearings",
+        "Record observations even when no alarm is present—early indicators prevent later failures",
+        "Verify that automation reflects actual conditions; do not assume the BAS is always accurate"
       ]
     },
     quiz: [
       {
         id: 1,
-        question: "What information should you include in a VVFI prompt for equipment troubleshooting?",
+        question: "A chiller shows normal operation on the BAS, but you hear a rhythmic surging sound from the compressor. What should you do?",
         type: "multiple-choice",
         options: [
-          "Just 'help me fix this'",
-          "Equipment ID, current readings, timeline of issue, recent changes, and specific symptoms",
-          "Only the equipment model number",
-          "A vague description of the problem"
+          "Ignore it—the BAS shows no alarm",
+          "Investigate immediately; the sound may indicate refrigerant issues, liquid slugging, or impending failure not yet detected by sensors",
+          "Wait until the next PM cycle",
+          "Increase the chiller load to stabilize it"
         ],
         correctAnswer: 1,
-        explanation: "Effective VVFI prompts include: equipment identification, specific parameter readings, timeline (when did it start, how has it changed), recent maintenance or operational changes, and detailed symptom description. Context enables better AI analysis."
+        explanation: "Physical indicators often precede sensor-detected problems. Surging can indicate low refrigerant, liquid refrigerant entering the compressor, or condenser issues. Early investigation prevents compressor damage."
       },
       {
         id: 2,
-        question: "When should you NOT rely solely on VVFI recommendations?",
+        question: "What is the limitation of relying primarily on alarm systems for condition awareness?",
         type: "multiple-choice",
         options: [
-          "For routine parameter logging",
-          "For life-safety situations, emergency shutdowns, or confined space entry decisions",
-          "For basic troubleshooting",
-          "For compliance document review"
+          "Alarms are always accurate",
+          "Alarms activate when conditions have already exceeded acceptable limits—damage or waste may already be occurring",
+          "Alarms are too expensive to maintain",
+          "Alarms cannot be calibrated"
         ],
         correctAnswer: 1,
-        explanation: "While VVFI is a powerful tool, life-safety decisions, emergency response, and high-risk operations require human expertise, supervisor approval, and adherence to established safety protocols. Always escalate critical situations."
+        explanation: "Alarms are reactive by design. They tell you when something has crossed a threshold, not when it is trending toward trouble. Proactive observation catches issues before they trigger alarms."
       },
       {
         id: 3,
-        question: "What is the primary benefit of VVFI's photo analysis capability?",
+        question: "During a walk-through, you notice ice forming on a refrigerant suction line. What does this indicate?",
         type: "multiple-choice",
         options: [
-          "It replaces the need for inspections",
-          "It can identify gauge readings, equipment conditions, and potential issues from images, providing immediate diagnostic insights",
-          "It only works for boilers",
-          "It eliminates the need for documentation"
+          "Normal operation in cooling mode",
+          "Possible low refrigerant charge, restricted airflow, or metering device issue causing superheat problems",
+          "The insulation is working correctly",
+          "The system is too efficient"
         ],
         correctAnswer: 1,
-        explanation: "VVFI can analyze photos to read gauges, identify equipment conditions, spot anomalies (leaks, corrosion, misalignments), and suggest diagnostic steps—providing rapid initial assessment that guides your investigation."
+        explanation: "Ice on a suction line typically indicates the refrigerant is absorbing too much superheat, often due to low charge, poor airflow across the evaporator, or a metering device restriction. All require investigation."
       },
       {
         id: 4,
-        question: "How should you handle a situation where VVFI's recommendation conflicts with your experience?",
+        question: "Why should you compare current readings to recent trends rather than just alarm setpoints?",
         type: "multiple-choice",
         options: [
-          "Always follow VVFI without question",
-          "Ignore VVFI completely",
-          "Document both perspectives, consult with supervisor, and apply critical thinking to determine best course",
-          "Disable VVFI access"
+          "Trends are easier to read than setpoints",
+          "Gradual degradation often stays below alarm thresholds while still causing waste, wear, or impending failure",
+          "Alarm setpoints are never accurate",
+          "Trends are required by regulation"
         ],
-        correctAnswer: 2,
-        explanation: "VVFI is a tool that augments your expertise, not replaces it. When conflicts arise, document both the AI recommendation and your assessment, consult experienced personnel, and make informed decisions based on complete information."
+        correctAnswer: 1,
+        explanation: "A gradual efficiency loss of 2% per week may never trigger an alarm, but over months it becomes significant waste. Trend awareness catches slow degradation that point-in-time alarms miss."
       }
     ],
-    reflectionPrompt: "Consider a recent equipment issue at your facility. How could VVFI have accelerated diagnosis or improved your response? What questions would you have asked?",
+    reflectionPrompt: "When was the last time you noticed an equipment issue before an alarm told you about it? What indicators led you to investigate?",
     keyTakeaways: [
-      "VVFI is an AI-powered diagnostic and guidance tool integrated into the Nexum Suum ecosystem",
-      "Effective prompts include equipment ID, specific readings, timelines, and detailed context",
-      "Photo analysis enables rapid visual assessment of equipment conditions and gauge readings",
-      "VVFI Compliance Analyzer helps interpret regulations and identify compliance gaps",
-      "Always validate VVFI recommendations against your knowledge and facility-specific conditions",
-      "Life-safety and emergency decisions require human expertise and supervisor involvement",
-      "Document VVFI interactions and recommendations for continuous improvement and training"
+      "Buildings communicate through gauges, sounds, temperatures, smells, and visual cues",
+      "Alarms are reactive—proactive observation catches issues earlier",
+      "Compare readings to baselines and trends, not just alarm setpoints",
+      "Walk-throughs should be deliberate and observational, not just check-the-box rounds",
+      "Physical indicators often precede sensor-detected problems",
+      "Document observations even when no alarm is present"
     ]
   },
 
   3: {
     id: 3,
-    title: "Boiler Operations & Thermal Efficiency",
-    objective: "Operate boilers safely, monitor thermal efficiency, and optimize combustion performance using digital logs",
-    duration: "120 minutes",
+    title: "Risk Identification in Daily Operations",
+    objective: "Identify mechanical, safety, environmental, and regulatory risks in real facility scenarios",
+    duration: "90 minutes",
     narrationScript: [
-      "Boilers are the thermal heart of most industrial facilities, converting fuel into steam or hot water for heating and process loads.",
-      "Understanding boiler types, combustion fundamentals, and efficiency metrics is essential for safe, cost-effective operations.",
-      "This module covers firetube and watertube boilers, burner management, feedwater systems, and how to interpret efficiency data.",
-      "You'll learn to use the Nexum Suum Boiler Log to track critical parameters and identify efficiency degradation early.",
-      "Proper boiler operation directly impacts energy costs, safety, and environmental compliance."
+      "Every facility has risks. Some are obvious—exposed electrical, missing guards, leaking gas. Others are subtle—deferred maintenance, inadequate documentation, untrained personnel.",
+      "Risk identification is not about creating fear. It is about seeing conditions clearly so you can prioritize action and allocate resources where they matter most.",
+      "This module teaches you to recognize hazards and inefficiencies during routine operations—on boilers, chillers, electrical systems, rooftops, and in mechanical rooms.",
+      "You will learn to distinguish between risks that require immediate action, those that can be scheduled, and those that should be monitored.",
+      "The goal is not zero risk—that is impossible. The goal is informed decision-making about which risks to address, in what order, with what resources."
     ],
     scenario: {
-      title: "Declining Boiler Efficiency Investigation",
-      description: "Identifying the cause of a 3% efficiency drop over two weeks",
-      situation: "Your Boiler Log dashboard shows Boiler #1 thermal efficiency has declined from 83% to 80% over the past two weeks. Stack temperature has increased from 385°F to 410°F, and O₂ readings have risen from 3.5% to 5.2%. The boiler is operating normally with no alarms. You need to investigate the cause, recommend corrective actions, and document your findings. You use VVFI to analyze the trend data and develop an action plan."
+      title: "The Deferred Maintenance Backlog",
+      description: "Prioritizing risk when everything seems urgent",
+      situation: "You inherit a facility with 47 open work orders, some dating back 18 months. The list includes: a boiler with a suspected tube leak (still operating), three rooftop units with non-functional economizers, a fire pump that failed its last flow test, emergency lighting with dead batteries in two stairwells, and a cooling tower with visible biological growth. Your budget can address about half of these this quarter. You need to rank them by risk—not by which manager is complaining loudest."
     },
     standards: {
-      title: "Boiler Operating Standards",
+      title: "Risk Identification Standards",
       items: [
-        "Log all critical parameters (steam pressure, feedwater temp, stack temp, O₂, blowdown) at specified intervals",
-        "Maintain stack temperature within manufacturer specifications (typically 300-450°F)",
-        "Target O₂ levels between 2-4% for optimal combustion efficiency",
-        "Perform daily visual inspections for leaks, unusual noises, and flame quality",
-        "Conduct blowdown procedures per water chemistry protocols",
-        "Monitor thermal efficiency trends—investigate any decline >2%",
-        "Test safety valves, low-water cutoffs, and flame safeguard systems per PM schedule",
-        "Never override safety interlocks without supervisor authorization and documented justification"
+        "Classify risks by category: life safety, regulatory compliance, equipment failure, energy waste, comfort impact",
+        "Prioritize life safety and regulatory risks above operational convenience",
+        "Document all identified risks with severity, likelihood, and potential impact",
+        "Distinguish between conditions requiring immediate action, scheduled repair, or monitoring",
+        "Review deferred maintenance backlogs monthly to identify escalating risks",
+        "Conduct formal hazard assessments for confined spaces, electrical work, and hot work",
+        "Report near-misses and unsafe conditions without blame—they indicate systemic risks"
       ]
     },
     quiz: [
       {
         id: 1,
-        question: "What is the primary difference between firetube and watertube boilers?",
+        question: "From the scenario, which issue should be addressed FIRST?",
         type: "multiple-choice",
         options: [
-          "Firetube boilers are always more efficient",
-          "In firetube boilers, hot gases pass through tubes surrounded by water; in watertube boilers, water passes through tubes surrounded by hot gases",
-          "Watertube boilers cannot produce high pressure steam",
-          "There is no difference"
+          "The rooftop economizers—they waste energy every day",
+          "The fire pump—fire protection system failures are life safety issues with regulatory implications",
+          "The cooling tower—biological growth looks bad",
+          "The boiler tube leak—it is the largest piece of equipment"
         ],
         correctAnswer: 1,
-        explanation: "Firetube boilers have hot combustion gases passing through tubes immersed in water, typically used for lower pressures. Watertube boilers have water in tubes with hot gases outside, allowing higher pressures and faster steam generation."
+        explanation: "A failed fire pump creates life safety exposure and regulatory violation. NFPA requires fire pumps to pass flow tests. This is a non-negotiable priority regardless of other operational concerns."
       },
       {
         id: 2,
-        question: "If boiler stack temperature increases while O₂ percentage rises, what is the most likely cause?",
+        question: "What is the primary purpose of risk identification in facility operations?",
         type: "multiple-choice",
         options: [
-          "Perfect combustion",
-          "Excess air entering the system, reducing combustion efficiency and increasing heat loss",
-          "Too much fuel",
-          "Normal operation"
+          "To generate work orders",
+          "To enable informed prioritization of resources toward conditions that matter most",
+          "To assign blame for problems",
+          "To satisfy auditors"
         ],
         correctAnswer: 1,
-        explanation: "Rising stack temperature with increasing O₂ indicates excess air is passing through the boiler. This excess air absorbs heat without participating in combustion, reducing efficiency and increasing stack losses."
+        explanation: "Risk identification supports decision-making. When you know which risks are most serious, you can allocate limited time, budget, and attention where they create the greatest reduction in exposure."
       },
       {
         id: 3,
-        question: "What is the purpose of boiler blowdown?",
+        question: "Emergency lighting with dead batteries in stairwells represents what type of risk?",
         type: "multiple-choice",
         options: [
-          "To waste water",
-          "To remove concentrated dissolved solids and prevent scale formation, corrosion, and carryover",
-          "To test the drain valve",
-          "To cool the boiler"
+          "Energy waste",
+          "Comfort impact",
+          "Life safety—occupants cannot safely evacuate in a power outage or fire",
+          "Aesthetic concern"
         ],
-        correctAnswer: 1,
-        explanation: "Blowdown removes concentrated dissolved solids that accumulate as water evaporates into steam. This prevents scale buildup, reduces corrosion risk, and prevents carryover of contaminants into the steam system."
+        correctAnswer: 2,
+        explanation: "Emergency egress lighting is life safety equipment. Dead batteries mean the lights will not function during emergencies. This is both a safety hazard and a code violation requiring prompt correction."
       },
       {
         id: 4,
-        question: "Thermal efficiency is calculated as:",
+        question: "A boiler tube leak has been present for three months. Why might this be more serious than it initially appears?",
         type: "multiple-choice",
         options: [
-          "(Steam output × temperature) ÷ Fuel cost",
-          "(Useful heat output ÷ Heat input from fuel) × 100",
-          "Stack temperature ÷ Steam pressure",
-          "O₂ percentage × Fuel flow rate"
+          "Tube leaks always cause explosions",
+          "Water loss increases operating cost slightly",
+          "Continued operation with a leak can cause accelerating damage, water quality problems, efficiency loss, and eventual catastrophic failure",
+          "It creates paperwork for the maintenance team"
         ],
-        correctAnswer: 1,
-        explanation: "Thermal efficiency = (Useful heat delivered to steam or hot water ÷ Total heat content of fuel consumed) × 100. It measures how effectively the boiler converts fuel energy into usable thermal energy."
+        correctAnswer: 2,
+        explanation: "Tube leaks worsen over time. Water loss affects chemistry balance. The leak location may spread. Continued thermal cycling stresses weakened metal. What starts as a minor issue can become an unplanned outage or safety incident."
       },
       {
         id: 5,
-        question: "What immediate action should you take if the low-water cutoff alarm activates?",
+        question: "How should you handle a risk that you identify but cannot immediately fix due to budget constraints?",
         type: "multiple-choice",
         options: [
-          "Add more feedwater immediately",
-          "Allow the boiler to shut down safely, do NOT add water, investigate the cause, and notify supervisor",
-          "Override the alarm and continue operating",
-          "Increase steam production"
+          "Ignore it until budget is available",
+          "Document the risk, implement interim controls if possible, communicate to management, and schedule for future action",
+          "Fix it anyway and deal with budget later",
+          "Remove the documentation so no one asks about it"
         ],
         correctAnswer: 1,
-        explanation: "Low-water cutoffs protect against catastrophic dry-firing. Never add water to an overheated boiler (can cause violent steam explosion). Let it shut down, cool, investigate why water level dropped, and follow restart procedures only after supervisor approval."
+        explanation: "Unfunded risks must still be documented and communicated. Interim controls (e.g., increased monitoring, temporary barriers, reduced operation) may reduce exposure. Management needs to understand what risks remain so they can make informed decisions."
       }
     ],
-    reflectionPrompt: "How would improving boiler efficiency by 3% impact your facility's annual fuel costs? Calculate the potential savings based on your current consumption.",
+    reflectionPrompt: "Look at your facility's open work order list. Can you rank every item by risk category? Are there life safety or regulatory items that have been deferred due to budget or convenience?",
     keyTakeaways: [
-      "Boilers convert fuel into thermal energy—efficiency directly impacts operating costs",
-      "Monitor stack temperature and O₂ levels to maintain optimal combustion efficiency",
-      "Rising stack temp + rising O₂ indicates excess air and declining efficiency",
-      "Blowdown prevents scale formation and maintains water chemistry within specifications",
-      "Digital Boiler Logs enable trend analysis and early detection of efficiency degradation",
-      "Safety systems (low-water cutoff, pressure relief, flame safeguard) must never be overridden",
-      "Thermal efficiency trends should trigger investigation when declining >2% from baseline"
+      "Risks fall into categories: life safety, regulatory, equipment failure, energy waste, comfort",
+      "Life safety and regulatory risks take priority over operational convenience",
+      "Deferred maintenance often contains escalating risks that are easy to overlook",
+      "Risk identification enables informed prioritization of limited resources",
+      "Document risks even when you cannot immediately address them",
+      "Near-misses and unsafe conditions are indicators of systemic risk"
     ]
   },
 
   4: {
     id: 4,
-    title: "Boiler Water Chemistry (Baselines)",
-    objective: "Maintain optimal boiler water chemistry to prevent corrosion, scaling, and efficiency loss",
-    duration: "90 minutes",
+    title: "Maintenance Strategy and Reliability",
+    objective: "Compare maintenance approaches and determine when each is appropriate based on equipment criticality",
+    duration: "75 minutes",
     narrationScript: [
-      "Boiler water chemistry is critical for equipment longevity, efficiency, and safety.",
-      "Poor water quality causes scale formation, corrosion, carryover, and premature equipment failure.",
-      "This module teaches the fundamentals of conductivity, pH, alkalinity, hardness, and chemical treatment programs.",
-      "You'll learn how to test, log, and interpret water chemistry parameters using the Nexum Suum system.",
-      "Understanding the relationship between water chemistry and thermal efficiency will help you optimize operations and prevent costly failures."
+      "Maintenance strategy is not one-size-fits-all. Running equipment to failure makes sense for some components. Preventive schedules work for others. Condition-based monitoring is worth the investment for critical assets.",
+      "The key is matching the strategy to the equipment: its criticality, failure modes, failure consequences, and the cost of different approaches.",
+      "Too many facilities apply the same PM interval to everything—or worse, run everything to failure because they lack capacity to do otherwise.",
+      "This module teaches you to evaluate maintenance approaches, assess PM schedules, and determine when to invest in monitoring versus when to accept run-to-failure.",
+      "The goal is not perfect reliability. It is optimized reliability: the right level of maintenance for each piece of equipment given its role in your operation."
     ],
     scenario: {
-      title: "High Conductivity Alarm Response",
-      description: "Investigating and correcting elevated boiler water conductivity",
-      situation: "The Boiler Log triggers an alert: Boiler #3 conductivity has increased from 2,800 µS/cm to 4,200 µS/cm over the past 12 hours. pH is stable at 11.2, and feedwater hardness is within spec. You need to determine the cause, perform corrective blowdown, test chemistry parameters, and document the incident. VVFI provides guidance on blowdown procedures and suggests investigating makeup water quality and condensate return contamination."
+      title: "The PM Schedule That Wastes Resources",
+      description: "Evaluating whether a preventive maintenance program is effective",
+      situation: "Your facility has a PM program that changes all AHU filters quarterly, regardless of condition. Technicians report that some filters are still clean at change-out while others are loaded within weeks. Meanwhile, a critical chiller has only annual PM while its cooling tower—which directly affects chiller efficiency—receives no scheduled maintenance at all. You are asked to evaluate whether the PM program is allocating effort effectively."
     },
     standards: {
-      title: "Boiler Water Chemistry Standards",
+      title: "Maintenance Strategy Standards",
       items: [
-        "Test and log boiler water parameters daily: conductivity, pH, alkalinity, phosphate, sulfite",
-        "Test feedwater: hardness, pH, conductivity, dissolved oxygen",
-        "Maintain boiler water conductivity below maximum limits (typically 3,000-5,000 µS/cm depending on pressure)",
-        "Target pH between 10.5-12.0 for most low-pressure steam boilers",
-        "Perform bottom blowdown when conductivity exceeds setpoint to remove concentrated solids",
-        "Monitor deaerator operation—ensure dissolved oxygen <0.005 ppm in feedwater",
-        "Track chemical feed rates and inventory—notify supervisor of unusual consumption",
-        "Investigate any rapid changes in water chemistry parameters within 2 hours"
+        "Classify equipment by criticality: what happens if it fails?",
+        "Match maintenance strategy to failure mode: wear-out failures suit preventive maintenance; random failures do not",
+        "Review PM task lists annually—remove tasks that do not prevent failures or extend life",
+        "Apply condition-based monitoring to high-value equipment where failure is costly",
+        "Accept run-to-failure for non-critical, low-cost items with no safety impact",
+        "Track maintenance costs and equipment uptime to evaluate program effectiveness",
+        "Ensure PM programs do not create new problems through unnecessary disassembly or adjustment"
       ]
     },
     quiz: [
       {
         id: 1,
-        question: "What does conductivity measure in boiler water?",
+        question: "When is run-to-failure an acceptable maintenance strategy?",
         type: "multiple-choice",
         options: [
-          "Temperature",
-          "The concentration of dissolved solids (minerals and salts) in the water",
-          "Water flow rate",
-          "pH level"
+          "Never—all equipment requires preventive maintenance",
+          "For low-cost, non-critical items with no safety impact and easy replacement",
+          "For all equipment to save maintenance costs",
+          "Only for equipment under warranty"
         ],
         correctAnswer: 1,
-        explanation: "Conductivity measures the water's ability to conduct electrical current, which correlates directly with the concentration of dissolved solids. High conductivity indicates high dissolved solids concentration, requiring blowdown."
+        explanation: "Run-to-failure is appropriate for components like light bulbs, small pumps in non-critical service, or equipment with redundant backup—where failure causes no safety issue and replacement cost is less than PM cost."
       },
       {
         id: 2,
-        question: "Why is maintaining proper pH (typically 10.5-12.0) important in boiler water?",
+        question: "A PM program changes air filters on a fixed 90-day schedule. Some filters are clean at change-out, others are loaded in 30 days. What does this indicate?",
         type: "multiple-choice",
         options: [
-          "It makes the water taste better",
-          "It prevents corrosion, protects metal surfaces, and optimizes chemical treatment effectiveness",
-          "It increases fuel efficiency",
-          "It has no real purpose"
+          "The PM program is working correctly",
+          "The schedule is not matched to actual conditions—some filters are changed too early, others too late",
+          "All filters should be changed more frequently",
+          "Filter quality is inconsistent"
         ],
         correctAnswer: 1,
-        explanation: "Proper alkaline pH (10.5-12.0) creates a protective oxide layer on metal surfaces, prevents acidic corrosion, and ensures chemical treatments (phosphates, oxygen scavengers) function effectively. Low pH causes severe corrosion; excessively high pH can cause caustic embrittlement."
+        explanation: "Fixed intervals that do not reflect actual conditions waste resources on clean filters while allowing dirty filters to restrict airflow. Condition-based change-out (differential pressure monitoring) is often more effective."
       },
       {
         id: 3,
-        question: "What is the purpose of a deaerator (DA) tank?",
+        question: "What is the primary purpose of preventive maintenance?",
         type: "multiple-choice",
         options: [
-          "To add air to the water",
-          "To remove dissolved oxygen and other gases from feedwater, preventing corrosion",
-          "To heat the boiler room",
-          "To filter particulates"
+          "To keep technicians busy",
+          "To replace worn components before they fail, extending equipment life and preventing unplanned downtime",
+          "To satisfy warranty requirements only",
+          "To generate work orders for tracking"
         ],
         correctAnswer: 1,
-        explanation: "Deaerators heat feedwater and strip dissolved oxygen and CO₂ from the water. Dissolved oxygen causes severe pitting corrosion in boilers and condensate systems. DA tanks typically reduce oxygen to <0.005 ppm."
+        explanation: "Effective PM addresses wear-out failures by replacing components before they cause breakdown. The goal is planned intervention during convenient windows rather than unplanned failure during critical operation."
       },
       {
         id: 4,
-        question: "What chemical is commonly used as an oxygen scavenger in boiler systems?",
+        question: "Why might a chiller with annual PM still fail unexpectedly?",
         type: "multiple-choice",
         options: [
-          "Chlorine",
-          "Sodium sulfite or alternative organic scavengers",
-          "Salt (sodium chloride)",
-          "Vinegar"
+          "Annual PM is never sufficient",
+          "If the failure mode is not wear-related (e.g., refrigerant leak, electrical fault), time-based PM may not catch it",
+          "Chillers are too complex for maintenance",
+          "The technicians are not qualified"
         ],
         correctAnswer: 1,
-        explanation: "Sodium sulfite (Na₂SO₃) reacts with dissolved oxygen to form sodium sulfate, eliminating oxygen before it can cause corrosion. Modern systems may use organic oxygen scavengers (DEHA, carbohydrazide) for higher pressure applications."
+        explanation: "Time-based PM catches wear-out failures but not random failures like refrigerant leaks, electrical faults, or control issues. Condition monitoring (vibration, refrigerant analysis, electrical testing) catches these failure modes."
       },
       {
         id: 5,
-        question: "The Langelier Saturation Index (LSI) helps predict:",
+        question: "A cooling tower receives no scheduled maintenance. What risks does this create for the chiller it serves?",
         type: "multiple-choice",
         options: [
-          "Boiler fuel consumption",
-          "The tendency of water to form scale (positive LSI) or cause corrosion (negative LSI)",
-          "Steam pressure limits",
-          "Chemical feed rates"
+          "No impact—cooling towers do not affect chillers",
+          "Scale, biological growth, and fouling in the tower increase condenser water temperature, reducing chiller efficiency and life",
+          "The chiller will run more efficiently without tower maintenance",
+          "Cooling tower maintenance is not necessary"
         ],
         correctAnswer: 1,
-        explanation: "LSI predicts calcium carbonate scaling or corrosion tendency. Positive LSI indicates supersaturation (scaling risk); negative LSI indicates undersaturation (corrosion risk). Target is slightly positive (0.2-0.5) for protective scale without buildup."
+        explanation: "The cooling tower directly affects condenser water temperature. Fouled towers deliver warmer water, forcing the chiller to work harder. This reduces efficiency and accelerates compressor wear. Tower maintenance protects chiller investment."
       }
     ],
-    reflectionPrompt: "How would undetected corrosion or scaling in your boiler system impact long-term facility costs and safety? What preventive monitoring would you implement?",
+    reflectionPrompt: "Review your facility's PM program. Are there tasks that have never prevented a failure? Are there critical assets that receive less attention than they should?",
     keyTakeaways: [
-      "Boiler water chemistry directly affects equipment life, efficiency, and safety",
-      "Conductivity measures dissolved solids concentration—high conductivity requires blowdown",
-      "pH must be maintained between 10.5-12.0 to prevent corrosion and optimize treatment",
-      "Deaerators remove dissolved oxygen, preventing corrosion in feedwater and condensate systems",
-      "Chemical treatments include oxygen scavengers, pH adjusters, scale inhibitors, and antifoaming agents",
-      "Daily testing and logging of chemistry parameters enables early detection of issues",
-      "Understanding chemistry-efficiency connections helps optimize both performance and equipment life"
+      "Match maintenance strategy to equipment criticality and failure modes",
+      "Preventive maintenance works for wear-out failures with predictable timelines",
+      "Condition-based monitoring catches random failures that time-based PM misses",
+      "Run-to-failure is acceptable for non-critical, low-cost items with no safety impact",
+      "PM programs should be reviewed annually—tasks that do not prevent failures waste resources",
+      "Reliability is optimized, not maximized—the right level of maintenance for each asset"
     ]
   },
 
   5: {
     id: 5,
-    title: "Chiller Operations & ΔT Management",
-    objective: "Operate chillers efficiently, optimize ΔT performance, and diagnose common operational issues",
-    duration: "120 minutes",
+    title: "Energy, Utilities, and Operating Costs",
+    objective: "Interpret utility data, identify waste sources, and connect operations to energy costs",
+    duration: "75 minutes",
     narrationScript: [
-      "Chillers are often the largest energy consumers in commercial and industrial facilities.",
-      "Understanding chiller fundamentals, flow relationships, and ΔT optimization is critical for energy cost management.",
-      "This module covers centrifugal, screw, and scroll chillers, condenser/evaporator principles, and approach temperature monitoring.",
-      "You'll learn how to calculate chiller load percentage, interpret efficiency trends, and use VVFI for diagnostics.",
-      "Proper ΔT management can reduce energy consumption by 10-30% while extending equipment life."
+      "Energy is often the largest controllable operating cost in a facility. Yet many operators do not connect their daily decisions to the utility bill.",
+      "Understanding how equipment operation, building loads, and maintenance practices affect energy consumption is essential for cost control.",
+      "This module teaches you to read utility data, identify waste patterns, and recognize the operational causes of high consumption.",
+      "You will learn to see energy not as a fixed cost but as a variable that responds to equipment condition, scheduling, and operator decisions.",
+      "The goal is not to obsess over every kilowatt, but to recognize when something is using more energy than it should—and know what to do about it."
     ],
     scenario: {
-      title: "Low ΔT Performance Issue",
-      description: "Diagnosing why chiller ΔT has dropped from 12°F to 7°F",
-      situation: "Chiller #1 is producing 42°F supply water with 49°F return water—a ΔT of only 7°F instead of the design 12°F. The chiller is running at 85% capacity but only delivering 60% of design tonnage. Flow rates appear normal on the display. You photograph the evaporator gauge panel and the building automation system screen showing supply/return temps. You prompt VVFI: 'Chiller 1 low delta-T issue. Design 12°F, current 7°F. See attached flow and temp data. Diagnose cause.'"
+      title: "The Unexplained Consumption Spike",
+      description: "Tracing a 15% increase in electrical demand to its source",
+      situation: "The August electric bill shows a 15% increase in demand charges compared to the same month last year. Weather was similar. Occupancy was the same. Building automation shows no obvious changes. You investigate and find: a chiller running in manual override at fixed capacity (instead of auto-staging), economizers locked out on three rooftop units, and a scheduling error running exhaust fans 24/7 instead of occupied hours only. Each issue contributes to the spike."
     },
     standards: {
-      title: "Chiller Operating Standards",
+      title: "Energy Management Standards",
       items: [
-        "Log chiller parameters every 4 hours: supply/return temps, ΔT, flow, kW, oil temp/pressure, approach temps",
-        "Target evaporator ΔT at design specification (typically 10-14°F for comfort cooling)",
-        "Monitor approach temperatures: evaporator approach <3°F, condenser approach <5°F",
-        "Calculate and track chiller load percentage: (Actual tons ÷ Design tons) × 100",
-        "Investigate any ΔT decline >2°F from baseline within 4 hours",
-        "Monitor oil temperature and pressure—shutdown if outside manufacturer specifications",
-        "Coordinate with cooling tower operations to maintain condenser water temps",
-        "Track kW/ton efficiency—investigate increases >5% from baseline"
+        "Review utility bills monthly and compare to same period in prior years",
+        "Investigate any consumption increase greater than 10% without corresponding load increase",
+        "Audit BAS schedules quarterly to verify equipment operates only when needed",
+        "Verify economizer operation during mild weather—free cooling reduces compressor runtime",
+        "Monitor chiller and boiler efficiency trends—declining efficiency increases consumption",
+        "Identify equipment running continuously that should cycle or stage",
+        "Report energy anomalies promptly—waste compounds daily until corrected"
       ]
     },
     quiz: [
       {
         id: 1,
-        question: "What is ΔT (Delta-T) in chiller operations?",
+        question: "A chiller running in manual override at fixed capacity (instead of auto-staging) affects energy use how?",
         type: "multiple-choice",
         options: [
-          "The temperature of the chilled water",
-          "The temperature difference between return and supply water (Return temp - Supply temp)",
-          "The ambient temperature",
-          "The refrigerant pressure"
+          "It uses less energy because it is more stable",
+          "It uses more energy because it cannot reduce output to match actual load",
+          "It has no impact on energy",
+          "It only affects water use, not electricity"
         ],
         correctAnswer: 1,
-        explanation: "ΔT is the temperature difference between chilled water return and supply. For example, if return is 56°F and supply is 44°F, ΔT = 12°F. Higher ΔT (at proper flow) indicates efficient heat transfer and proper loading."
+        explanation: "Chillers are most efficient when staging matches load. Running at fixed capacity when load is low forces the chiller to work harder than necessary, wasting energy and potentially causing other issues like short-cycling."
       },
       {
         id: 2,
-        question: "If chiller ΔT decreases while the building load remains constant, what is the likely cause?",
+        question: "Why should you compare utility bills to the same month in prior years rather than just to the prior month?",
         type: "multiple-choice",
         options: [
-          "The chiller is more efficient",
-          "Excessive flow rate through the evaporator (water moving too fast to absorb heat properly)",
-          "The building needs more cooling",
-          "The chiller is off"
+          "Prior year data is more accurate",
+          "Weather and occupancy patterns are seasonal—comparing to same season provides better baseline for identifying anomalies",
+          "Prior month data is not available",
+          "It is required by regulators"
         ],
         correctAnswer: 1,
-        explanation: "Low ΔT with constant load indicates water is flowing too quickly through the evaporator to absorb design heat. This is often caused by control valve failures, bypass issues, or improperly configured variable flow systems. The chiller works harder (higher kW) for the same cooling output."
+        explanation: "Energy use varies seasonally with weather and occupancy. August to August comparison controls for these variables. August to July comparison mixes summer cooling load with mid-summer transition, obscuring real changes."
       },
       {
         id: 3,
-        question: "What does 'approach temperature' measure?",
+        question: "What is an economizer, and why does its failure waste energy?",
         type: "multiple-choice",
         options: [
-          "How close the chiller is to the building",
-          "The temperature difference between leaving water and refrigerant temperature in the evaporator or condenser",
-          "The outside air temperature",
-          "The difference between oil and water temperature"
+          "A device that reduces heating costs only",
+          "A system that uses outdoor air for cooling when conditions allow, reducing or eliminating compressor operation",
+          "A type of chiller",
+          "An energy billing adjustment"
         ],
         correctAnswer: 1,
-        explanation: "Approach temperature indicates heat transfer efficiency. Low approach (<3°F evaporator, <5°F condenser) means efficient heat transfer. High approach indicates fouling, scaling, low flow, or refrigerant issues reducing heat transfer effectiveness."
+        explanation: "Economizers bring in cool outdoor air to satisfy cooling load without running compressors. When economizers fail or are locked out, the system runs mechanical cooling even when free cooling is available—significant waste."
       },
       {
         id: 4,
-        question: "How do you calculate chiller load percentage?",
+        question: "Exhaust fans running 24/7 instead of occupied hours affects energy how?",
         type: "multiple-choice",
         options: [
-          "kW input × 100",
-          "(Actual tons delivered ÷ Chiller design tonnage) × 100, where tons = (GPM × ΔT × 500) ÷ 12,000",
-          "Supply temperature ÷ Return temperature",
-          "Flow rate × Pressure"
+          "No impact—fans use minimal energy",
+          "Fans consume electricity continuously AND force the HVAC system to condition outdoor air that the exhaust pulls into the building",
+          "It only affects air quality, not energy",
+          "It saves energy by reducing HVAC load"
         ],
         correctAnswer: 1,
-        explanation: "Chiller load % = (Actual tons ÷ Design tons) × 100. Actual tons = (GPM × ΔT × 500) ÷ 12,000. This shows what percentage of design capacity the chiller is delivering, critical for staging and efficiency optimization."
+        explanation: "Exhaust fans both consume electricity and create negative pressure that pulls unconditioned outdoor air into the building. This infiltration load forces heating or cooling systems to work harder, compounding the waste."
       },
       {
         id: 5,
-        question: "Why is tube scaling in the evaporator or condenser a serious efficiency concern?",
+        question: "A 15% demand charge increase costs the facility $2,000/month. How much does three months of delay in fixing the issue cost?",
         type: "multiple-choice",
         options: [
-          "It makes the water dirty",
-          "Scale acts as an insulator, reducing heat transfer efficiency, increasing approach temps, and forcing the chiller to work harder (higher kW/ton)",
-          "It improves efficiency",
-          "It only affects appearance"
+          "$2,000",
+          "$6,000—waste compounds until corrected",
+          "$1,000—the rate decreases over time",
+          "Nothing if the budget does not cover repairs"
         ],
         correctAnswer: 1,
-        explanation: "Scale buildup (from minerals in water) on tube surfaces insulates the metal, reducing heat transfer. This increases approach temps, reduces capacity, and dramatically increases energy consumption (kW/ton) as the chiller works harder to achieve the same cooling output."
+        explanation: "Energy waste is continuous. Every month the issue persists costs another $2,000. Prompt action prevents compounding losses. Delaying repairs to defer cost often results in higher total expenditure."
       }
     ],
-    reflectionPrompt: "If improving your chiller's ΔT performance reduced energy consumption by 15%, what would that mean for annual electricity costs and environmental impact at your facility?",
+    reflectionPrompt: "Do you know what your facility spent on electricity last month? Do you know why it was higher or lower than the month before?",
     keyTakeaways: [
-      "Chiller ΔT performance directly impacts energy efficiency and operating costs",
-      "Target design ΔT (typically 10-14°F)—low ΔT indicates excessive flow or control issues",
-      "Approach temperatures indicate heat transfer efficiency—high approach signals fouling or flow problems",
-      "Chiller load percentage = (Actual tons ÷ Design tons) × 100",
-      "Monitor kW/ton efficiency trends—increases indicate declining performance requiring investigation",
-      "Tube scaling and fouling dramatically reduce efficiency and increase energy costs",
-      "Coordination with cooling tower operations is essential for optimizing condenser performance"
+      "Energy is often the largest controllable operating cost",
+      "Compare utility data to same period in prior years to identify anomalies",
+      "Equipment in manual override, locked-out economizers, and scheduling errors are common waste sources",
+      "Declining equipment efficiency increases consumption—monitor trends",
+      "Energy waste compounds daily—prompt investigation and correction matters",
+      "Operator decisions directly affect utility bills"
     ]
   },
 
   6: {
     id: 6,
-    title: "Facility Maintenance & Reliability",
-    objective: "Implement preventive maintenance strategies, optimize reliability, and reduce unplanned downtime",
-    duration: "90 minutes",
+    title: "Documentation, SOPs, and Compliance",
+    objective: "Assess documentation quality and ensure regulatory defensibility in facility records",
+    duration: "60 minutes",
     narrationScript: [
-      "Preventive maintenance is the foundation of facility reliability and long-term cost efficiency.",
-      "Shifting from reactive to predictive maintenance reduces downtime, extends equipment life, and lowers total cost of ownership.",
-      "This module covers PM scheduling, work order management, lubrication programs, and vibration analysis basics.",
-      "You'll learn how to identify energy waste, implement sustainable practices, and maintain organized, safe facility spaces.",
-      "Digital workbooks and maintenance logs in the Nexum Suum ecosystem enable data-driven reliability improvement."
+      "Documentation is not paperwork for its own sake. It is evidence that your facility operates safely, legally, and effectively.",
+      "When an inspector, auditor, or attorney asks what you did and when you did it, your records are your defense.",
+      "Poor documentation—missing signatures, vague entries, inconsistent logs—creates liability even when actual operations are sound.",
+      "This module teaches you to evaluate SOPs, inspection logs, and compliance records for completeness and accuracy.",
+      "You will learn to identify documentation gaps that create regulatory exposure or operational confusion before they become problems."
     ],
     scenario: {
-      title: "Preventing a Pump Failure",
-      description: "Using vibration trends to predict and prevent equipment failure",
-      situation: "During your monthly vibration rounds, you notice Chilled Water Pump #2 vibration has increased from 0.08 in/sec to 0.18 in/sec over the past 4 weeks. The pump is still operating, but the trend is concerning. You photograph the vibration analyzer display and upload it to VVFI with pump nameplate data and recent maintenance history. VVFI recommends immediate bearing inspection and provides a step-by-step diagnostic protocol. You create a work order and schedule downtime with operations."
+      title: "The Audit That Revealed Documentation Gaps",
+      description: "An insurance inspection exposes recordkeeping weaknesses",
+      situation: "An insurance loss-control inspector reviews your boiler room records. She asks to see: the last three annual boiler inspections, water treatment logs for the past year, safety valve test records, operator training documentation, and the low-water cutoff test log. You can produce the boiler inspections and some water treatment logs, but the safety valve tests were done but not recorded, operator training was verbal with no sign-off sheets, and the low-water cutoff log shows inconsistent entries with gaps. The inspector notes these deficiencies in her report, potentially affecting your coverage terms."
     },
     standards: {
-      title: "Facility Maintenance Standards",
+      title: "Documentation and Compliance Standards",
       items: [
-        "Complete all scheduled PM tasks on time—no deferrals without supervisor approval",
-        "Document all maintenance activities in work order system with parts used, time spent, and findings",
-        "Perform daily visual inspections for leaks, unusual noises, vibration, and overheating",
-        "Maintain lubrication schedules—wrong or missed lubrication is a leading cause of bearing failure",
-        "Conduct monthly vibration analysis on critical rotating equipment",
-        "Keep equipment rooms clean, organized, and free of obstructions and trip hazards",
-        "Label all equipment, valves, and electrical panels clearly and accurately",
-        "Investigate any abnormal conditions immediately—don't wait for failure"
+        "All required inspections must be documented with date, inspector, findings, and follow-up actions",
+        "SOPs must be reviewed annually and updated when equipment or regulations change",
+        "Training must be documented with trainee signature, trainer, date, and topics covered",
+        "Log entries must be legible, complete, and consistent—no gaps in required intervals",
+        "Corrective actions from inspections must be documented with completion date and responsible party",
+        "Compliance records must be retained per regulatory requirements—typically 3-5 years minimum",
+        "Digital and paper records must be backed up and accessible for audits or investigations"
       ]
     },
     quiz: [
       {
         id: 1,
-        question: "What is the primary difference between preventive and predictive maintenance?",
+        question: "A safety valve test was performed correctly, but no record exists. What is the regulatory and legal status of that test?",
         type: "multiple-choice",
         options: [
-          "There is no difference",
-          "Preventive is scheduled based on time/usage intervals; predictive uses condition monitoring data to predict failures before they occur",
-          "Predictive maintenance is always more expensive",
-          "Preventive maintenance is reactive"
+          "Fully compliant—the test was done",
+          "Defensibly questionable—without documentation, you cannot prove the test occurred if challenged",
+          "The test does not count for maintenance purposes",
+          "Documentation is optional for safety equipment"
         ],
         correctAnswer: 1,
-        explanation: "Preventive maintenance follows fixed schedules (e.g., change oil every 6 months). Predictive maintenance uses real-time condition data (vibration, temperature, oil analysis) to predict when equipment will fail, allowing maintenance only when needed—reducing waste and preventing unexpected failures."
+        explanation: "From a regulatory and legal standpoint, undocumented activities are difficult to defend. An inspector or attorney may assume the test was not done. Documentation is the evidence that supports your compliance claim."
       },
       {
         id: 2,
-        question: "Why is proper lubrication critical for rotating equipment?",
+        question: "What is the primary purpose of Standard Operating Procedures (SOPs)?",
         type: "multiple-choice",
         options: [
-          "It makes equipment look cleaner",
-          "It reduces friction and heat, prevents wear, and extends bearing life—improper lubrication causes 50%+ of bearing failures",
-          "It's only important for appearance",
-          "It increases energy consumption"
+          "To satisfy auditors only",
+          "To ensure tasks are performed consistently, correctly, and safely regardless of which operator is on shift",
+          "To create paperwork for regulatory files",
+          "To restrict operator flexibility"
         ],
         correctAnswer: 1,
-        explanation: "Proper lubrication creates a protective film between moving parts, reducing friction, heat, and wear. Over-lubrication, under-lubrication, or wrong lubricant type causes the majority of bearing failures. Follow manufacturer specifications exactly."
+        explanation: "SOPs capture the correct way to perform a task. They ensure consistency across shifts and operators, reduce errors, and provide a training reference. They also demonstrate due diligence in maintaining operational standards."
       },
       {
         id: 3,
-        question: "What does increasing vibration in rotating equipment typically indicate?",
+        question: "A log shows entries for most days but has unexplained gaps on weekends. What risk does this create?",
         type: "multiple-choice",
         options: [
-          "Normal operation",
-          "Developing problems: bearing wear, misalignment, imbalance, or looseness",
-          "Improved efficiency",
-          "Nothing important"
+          "No risk—weekends are less important",
+          "Creates questions about whether required tasks were performed, and suggests inconsistent operational oversight",
+          "Weekend entries are not required",
+          "Gaps indicate efficient operation"
         ],
         correctAnswer: 1,
-        explanation: "Increasing vibration is an early warning of mechanical problems: bearing wear, shaft misalignment, impeller imbalance, loose mounting, or coupling issues. Trending vibration data enables predictive maintenance before catastrophic failure."
+        explanation: "Unexplained gaps suggest either tasks were not performed or documentation was not prioritized. Both create compliance risk and operational questions. Consistent logging demonstrates consistent operation."
       },
       {
         id: 4,
-        question: "What is a common source of energy waste in facility operations?",
+        question: "How often should SOPs be reviewed for accuracy?",
         type: "multiple-choice",
         options: [
-          "Equipment operating only when needed",
-          "Compressed air leaks, steam leaks, running equipment during unoccupied hours, poor insulation, and inefficient lighting",
-          "Turning off lights",
-          "Regular maintenance"
+          "Only when equipment is replaced",
+          "At least annually, and whenever equipment, processes, or regulations change",
+          "Every five years",
+          "SOPs do not require review once written"
         ],
         correctAnswer: 1,
-        explanation: "Major energy waste sources include: compressed air leaks (20-30% losses common), steam trap failures, running HVAC during unoccupied periods, poor insulation, simultaneous heating/cooling, and outdated lighting. Identifying and eliminating waste is high-ROI maintenance work."
+        explanation: "Equipment, regulations, and best practices evolve. SOPs must be reviewed at least annually to ensure they reflect current requirements. Outdated SOPs can lead operators to perform tasks incorrectly or unsafely."
+      },
+      {
+        id: 5,
+        question: "An inspector asks for training records. You have verbal assurance that all operators were trained. Is this sufficient?",
+        type: "multiple-choice",
+        options: [
+          "Yes—the training happened",
+          "No—training without documentation cannot be verified and may not satisfy regulatory requirements",
+          "Only if the inspector knows the trainer personally",
+          "Verbal training is preferred over documented training"
+        ],
+        correctAnswer: 1,
+        explanation: "Documented training proves who was trained, when, on what topics, and by whom. Without records, you cannot demonstrate compliance with training requirements or defend against claims of inadequate training."
       }
     ],
-    reflectionPrompt: "Identify three pieces of critical equipment at your facility. What would be the operational and financial impact if each failed unexpectedly? How would predictive maintenance prevent these failures?",
+    reflectionPrompt: "If an inspector asked for your facility's records tomorrow, could you produce complete documentation for all required inspections, training, and maintenance activities?",
     keyTakeaways: [
-      "Preventive maintenance prevents failures; predictive maintenance optimizes timing based on condition data",
-      "Proper lubrication (right type, right amount, right frequency) prevents 50%+ of bearing failures",
-      "Vibration analysis trends provide early warning of mechanical issues before catastrophic failure",
-      "Work order documentation creates historical knowledge base for troubleshooting and reliability improvement",
-      "Energy waste identification (leaks, inefficient operation, poor controls) is high-value maintenance work",
-      "Clean, organized, well-labeled facility spaces improve safety, efficiency, and response time",
-      "Digital maintenance logs enable trend analysis and data-driven reliability strategies"
+      "Documentation is evidence—undocumented activities are legally and regulatorily questionable",
+      "All required inspections, tests, and training must be documented with appropriate detail",
+      "SOPs must be reviewed annually and updated when conditions change",
+      "Consistent log entries demonstrate consistent operations",
+      "Corrective actions must be documented with completion evidence",
+      "Good documentation protects the facility, the organization, and you personally"
     ]
   },
 
   7: {
     id: 7,
-    title: "EHS Regulations & Compliance",
-    objective: "Understand OSHA requirements, maintain regulatory compliance, and create a culture of safety",
-    duration: "105 minutes",
+    title: "Translating Conditions into Management Actions",
+    objective: "Convert technical findings into clear, defensible recommendations for leadership",
+    duration: "60 minutes",
     narrationScript: [
-      "Environmental, Health, and Safety (EHS) compliance is non-negotiable in facility operations.",
-      "OSHA regulations exist to protect workers from injury, illness, and death—compliance is both legal requirement and moral obligation.",
-      "This module covers Lockout/Tagout, Confined Space Entry, PPE requirements, chemical safety, and emergency protocols.",
-      "You'll learn how to use the Nexum Suum Compliance Log to track inspections, violations, and corrective actions.",
-      "Creating a safety-first culture starts with understanding regulations and demonstrating consistent, disciplined compliance behaviors."
+      "Identifying problems is only half the job. The other half is communicating what you found in a way that enables decision-makers to act.",
+      "Technical jargon, excessive detail, and unclear recommendations frustrate leadership and delay action.",
+      "This module teaches you to present facility conditions, risks, and recommendations in plain language that supports informed decisions.",
+      "You will learn to structure management briefs, quantify impacts, and present options without overselling or understating.",
+      "The goal is not to tell management what to do. It is to give them the information they need to make good decisions—and to stand behind your recommendations when asked."
     ],
     scenario: {
-      title: "Confined Space Entry Planning",
-      description: "Properly planning and executing a boiler fireside inspection",
-      situation: "You need to perform an annual fireside inspection of Boiler #2, which requires entering the combustion chamber—a permit-required confined space. You must: 1) Verify the boiler is locked out and cooled, 2) Test atmosphere for oxygen, combustible gases, and toxic gases, 3) Set up continuous ventilation, 4) Assign attendant and rescue personnel, 5) Complete confined space permit, 6) Document entry in Compliance Log. You use VVFI to review confined space entry requirements and create a checklist."
+      title: "The Capital Request That Got Approved",
+      description: "Presenting a chiller replacement recommendation to leadership",
+      situation: "Your facility's 25-year-old chiller is increasingly unreliable. It has had three unplanned shutdowns this year, efficiency has declined 18% from nameplate, and the refrigerant is being phased out. You need to present a replacement recommendation to the CFO, who has limited technical background. You prepare a one-page brief that covers: current condition, operational risk, energy cost impact, regulatory timeline for refrigerant phase-out, replacement options with costs, and your recommendation with supporting rationale. The CFO approves the capital request."
     },
     standards: {
-      title: "EHS Compliance Standards",
+      title: "Management Communication Standards",
       items: [
-        "Never enter confined spaces without proper permits, testing, and attendant",
-        "Always use Lockout/Tagout procedures before servicing equipment—verify zero energy state",
-        "Wear appropriate PPE for all tasks: safety glasses, hard hat, steel-toe boots minimum in mechanical rooms",
-        "Maintain current SDS (Safety Data Sheets) for all chemicals—accessible to all personnel",
-        "Inspect fire extinguishers, eyewash stations, and emergency equipment monthly",
-        "Report all safety hazards, near-misses, and injuries immediately",
-        "Complete all required safety training before performing regulated tasks",
-        "Document all safety inspections, training, and incidents in Compliance Log"
+        "Lead with the bottom line—what is the issue, what do you recommend, why does it matter",
+        "Quantify impacts: dollars, downtime, risk level, timeline",
+        "Present options with pros and cons, not just your preferred solution",
+        "Use plain language—avoid jargon that obscures meaning",
+        "Be honest about uncertainties—do not oversell benefits or downplay risks",
+        "Support recommendations with evidence, not opinions",
+        "Be prepared to answer questions and defend your reasoning"
       ]
     },
     quiz: [
       {
         id: 1,
-        question: "What is the primary purpose of Lockout/Tagout (LOTO)?",
+        question: "What is the most effective way to open a management brief about a facility issue?",
         type: "multiple-choice",
         options: [
-          "To prevent theft",
-          "To control hazardous energy and prevent unexpected equipment startup during maintenance, protecting workers from injury or death",
-          "To mark broken equipment",
-          "To reserve equipment for specific shifts"
+          "With detailed technical background",
+          "With the bottom line: what is the issue, what do you recommend, and why it matters",
+          "With a history of the equipment",
+          "With a request for more budget"
         ],
         correctAnswer: 1,
-        explanation: "LOTO procedures control hazardous energy (electrical, mechanical, hydraulic, pneumatic, thermal) by physically locking equipment in a safe, zero-energy state before maintenance. This prevents unexpected startup, movement, or energy release that could injure or kill workers."
+        explanation: "Decision-makers are busy. Lead with the key message—issue, recommendation, impact—then provide supporting detail. This structure respects their time and ensures the main point is communicated even if they stop reading early."
       },
       {
         id: 2,
-        question: "What are the three atmospheric hazards that must be tested before confined space entry?",
+        question: "Why should you present options rather than just your preferred solution?",
         type: "multiple-choice",
         options: [
-          "Temperature, humidity, light level",
-          "Oxygen level (19.5-23.5%), combustible gases (<10% LEL), and toxic gases (below exposure limits)",
-          "Noise, vibration, dust",
-          "Only oxygen level"
+          "To make the brief longer",
+          "To show you considered alternatives, and to give decision-makers agency in choosing the approach",
+          "To avoid making a recommendation",
+          "Options are required by corporate policy"
         ],
         correctAnswer: 1,
-        explanation: "Before entry, test for: 1) Oxygen (must be 19.5-23.5%), 2) Combustible gases (must be <10% of Lower Explosive Limit), 3) Toxic gases (CO, H₂S, etc., must be below permissible exposure limits). Test continuously during entry."
+        explanation: "Presenting options demonstrates thorough analysis and respects leadership's role in decision-making. It also builds trust—you're providing information for their decision, not just selling your preference."
       },
       {
         id: 3,
-        question: "Which PPE is considered minimum requirement in mechanical/boiler rooms?",
+        question: "A chiller replacement will cost $350,000 but save $45,000/year in energy. How should you present this?",
         type: "multiple-choice",
         options: [
-          "Only gloves",
-          "Safety glasses, hard hat, and steel-toe boots",
-          "No PPE required",
-          "Only safety glasses"
+          "Just state the cost without benefits",
+          "Present cost alongside energy savings, simple payback period (7.8 years), and other benefits like reduced maintenance and risk",
+          "Inflate the savings to make the project more attractive",
+          "Avoid mentioning cost until asked"
         ],
         correctAnswer: 1,
-        explanation: "Minimum PPE in mechanical spaces typically includes: safety glasses (impact/splash protection), hard hat (overhead hazard protection), and steel-toe boots (foot protection from dropped objects and compression). Additional PPE required based on specific tasks (hearing protection, respirators, chemical gloves, etc.)."
+        explanation: "Present the full picture: cost, savings, payback, and qualitative benefits. Honest presentation of economics helps leadership make informed decisions. Inflating numbers damages credibility if discovered."
       },
       {
         id: 4,
-        question: "What information must a Safety Data Sheet (SDS) contain?",
+        question: "What should you do when you are uncertain about a cost estimate or risk assessment?",
         type: "multiple-choice",
         options: [
-          "Only the product name",
-          "Chemical identification, hazards, composition, first aid, handling/storage, exposure controls, physical/chemical properties, and disposal",
-          "Just the price",
-          "Only emergency contact information"
+          "Present your best guess as a fact",
+          "State the estimate clearly, note the uncertainty, and explain what additional information would improve accuracy",
+          "Avoid presenting uncertain information",
+          "Inflate the estimate to be safe"
         ],
         correctAnswer: 1,
-        explanation: "SDS provides comprehensive safety information in 16 standardized sections: identification, hazards, composition, first aid, firefighting, accidental release, handling/storage, exposure controls/PPE, physical/chemical properties, stability/reactivity, toxicology, ecological impact, disposal, transport, regulatory, and other information."
+        explanation: "Acknowledging uncertainty is honest and professional. Decision-makers can factor uncertainty into their risk assessment. Presenting guesses as facts damages credibility when reality differs from predictions."
       },
       {
         id: 5,
-        question: "How often must emergency eyewash stations be tested to ensure functionality?",
+        question: "A manager asks why you did not recommend the cheapest option. What is the appropriate response?",
         type: "multiple-choice",
         options: [
-          "Never—they don't need testing",
-          "Weekly activation to verify water flow and flush debris from lines",
-          "Only when someone gets injured",
-          "Every 5 years"
+          "The cheapest option is always the worst",
+          "Explain the trade-offs: the cheaper option may have higher risk, shorter life, or greater long-term cost",
+          "Admit you made a mistake",
+          "Defer to whatever the manager prefers"
         ],
         correctAnswer: 1,
-        explanation: "OSHA and ANSI Z358.1 require weekly activation of eyewash/shower stations to verify water flow, remove sediment, and ensure equipment functions in an emergency. Monthly inspection and annual detailed inspection are also required. Document all testing in Compliance Log."
+        explanation: "Defending your recommendation means explaining the reasoning. Cheap options often have hidden costs—shorter life, lower efficiency, higher maintenance. Present the trade-offs clearly and let the decision-maker weigh them."
       }
     ],
-    reflectionPrompt: "Reflect on a situation where you or a colleague took a safety shortcut. What was the potential consequence? How can you create a culture where shortcuts are unacceptable?",
+    reflectionPrompt: "Think of the last time you presented a recommendation to leadership. Did they understand the issue, the options, and the rationale—or did they seem confused or unconvinced?",
     keyTakeaways: [
-      "OSHA compliance protects workers and is legally required—violations carry severe penalties",
-      "Lockout/Tagout prevents injury from unexpected equipment energization during maintenance",
-      "Confined space entry requires permits, atmospheric testing, ventilation, attendants, and rescue plans",
-      "Proper PPE selection and use is the last line of defense against workplace hazards",
-      "SDS must be readily available for all chemicals—employees must know how to access and interpret them",
-      "Emergency equipment (eyewash, showers, extinguishers) requires regular testing and documentation",
-      "Safety culture is built through consistent compliance, hazard reporting, and accountability"
-    ]
-  },
-
-  8: {
-    id: 8,
-    title: "Evacuation & Emergency Protocols",
-    objective: "Execute emergency response procedures, manage evacuations, and ensure personnel safety during crises",
-    duration: "75 minutes",
-    narrationScript: [
-      "Emergency preparedness can mean the difference between minor incident and catastrophic outcome.",
-      "Every facility must have clear evacuation plans, trained personnel, and practiced emergency protocols.",
-      "This module covers emergency roles, alarm systems, communication hierarchies, and accountability procedures.",
-      "You'll learn how to respond to fires, chemical spills, equipment failures, and natural disasters.",
-      "VVFI can provide emergency guidance, but human decision-making and leadership are critical during crises."
-    ],
-    scenario: {
-      title: "Boiler Room Fire Alarm Response",
-      description: "Managing evacuation and emergency response during a fire alarm",
-      situation: "At 2:15 PM, the fire alarm activates in the main boiler room. You are the senior operator on duty. Smoke is visible near Boiler #1. You must: 1) Initiate emergency shutdown of affected equipment, 2) Activate facility evacuation procedures, 3) Call 911 and provide clear location/hazard information, 4) Account for all personnel at assembly point, 5) Coordinate with emergency responders, 6) Document incident and actions taken. Time is critical—you have seconds to make decisions."
-    },
-    standards: {
-      title: "Emergency Response Standards",
-      items: [
-        "Know all evacuation routes, assembly points, and alarm signals for your facility",
-        "In fire alarm situations: evacuate immediately unless assigned as emergency coordinator",
-        "Call 911 first in life-safety emergencies—provide clear location and hazard description",
-        "Never re-enter facility during evacuation without authorization from emergency personnel",
-        "Know location of fire extinguishers, pull stations, emergency shutoffs, and first aid equipment",
-        "Emergency coordinators must account for all personnel at assembly points",
-        "Document all emergency events immediately after resolution—include timeline, actions, personnel involved",
-        "Participate in all emergency drills—treat them as real events"
-      ]
-    },
-    quiz: [
-      {
-        id: 1,
-        question: "What is the first action you should take when discovering a fire in the facility?",
-        type: "multiple-choice",
-        options: [
-          "Try to fight the fire yourself",
-          "Activate the fire alarm, call 911, and evacuate—fight fire only if very small, you're trained, and have clear escape route",
-          "Look for the cause",
-          "Continue working and ignore it"
-        ],
-        correctAnswer: 1,
-        explanation: "Priority order: 1) Activate alarm to warn others, 2) Call 911 to get professional help coming, 3) Evacuate to safety. Attempt fire suppression ONLY if fire is very small (wastebasket-size), you're trained on extinguishers, proper extinguisher is available, and you have clear escape path. Never risk your life for property."
-      },
-      {
-        id: 2,
-        question: "During an evacuation, who is responsible for accounting for all personnel?",
-        type: "multiple-choice",
-        options: [
-          "No one—everyone is on their own",
-          "Designated emergency coordinators/floor wardens must account for personnel at assembly points",
-          "Only the fire department",
-          "The newest employee"
-        ],
-        correctAnswer: 1,
-        explanation: "Emergency coordinators/floor wardens are pre-assigned responsibility for accounting for all personnel in their areas at designated assembly points. They report headcount and any missing persons to incident commander. This ensures rescue efforts focus on confirmed missing personnel."
-      },
-      {
-        id: 3,
-        question: "What critical information should you provide when calling 911 for a facility emergency?",
-        type: "multiple-choice",
-        options: [
-          "Just say there's a problem",
-          "Exact address, building/floor location, type of emergency, number of injured, hazards present (chemicals, confined spaces), and callback number",
-          "Only your name",
-          "Ask them to guess"
-        ],
-        correctAnswer: 1,
-        explanation: "Provide: 1) Exact facility address and specific location (Building 3, Boiler Room, 2nd floor), 2) Emergency type (fire, chemical spill, injury), 3) Injuries and number of people involved, 4) Specific hazards (high pressure steam, ammonia, confined space), 5) Callback number. Clear information saves lives."
-      },
-      {
-        id: 4,
-        question: "When should you re-enter a facility after an evacuation?",
-        type: "multiple-choice",
-        options: [
-          "Whenever you want",
-          "Only after 'all clear' is given by emergency responders or facility emergency coordinator",
-          "As soon as the alarm stops",
-          "After 5 minutes"
-        ],
-        correctAnswer: 1,
-        explanation: "NEVER re-enter until official 'all clear' is given by fire department, emergency coordinator, or designated authority. Hidden hazards (structural damage, toxic gases, smoldering fires) may remain. Unauthorized re-entry endangers you and rescue personnel."
-      }
-    ],
-    reflectionPrompt: "Walk through your facility and identify evacuation routes, assembly points, emergency equipment locations, and potential hazards. Are you confident you could lead an evacuation?",
-    keyTakeaways: [
-      "Emergency preparedness requires planning, training, and practice before incidents occur",
-      "Fire alarm response: activate alarm, call 911, evacuate—property is replaceable, people are not",
-      "Emergency coordinators are responsible for personnel accountability at assembly points",
-      "Provide clear, specific information when calling 911: location, hazard type, injuries, special risks",
-      "Never re-enter evacuated facilities without official all-clear from emergency personnel",
-      "Know locations of emergency equipment: extinguishers, pull stations, shutoffs, first aid, AEDs",
-      "Document all emergency events immediately—timeline, actions, personnel, outcomes"
-    ]
-  },
-
-  9: {
-    id: 9,
-    title: "Communication & Leadership Excellence",
-    objective: "Develop professional communication skills, leadership behaviors, and operational accountability",
-    duration: "75 minutes",
-    narrationScript: [
-      "Technical excellence must be paired with professional communication and leadership to drive operational success.",
-      "Clear documentation, effective escalation, and disciplined collaboration are essential facility management skills.",
-      "This module teaches professional writing, fault reporting, email etiquette, and de-escalation techniques.",
-      "You'll learn the virtuous behavior model: discipline, accountability, honesty, and continuous improvement.",
-      "Leadership isn't about title—it's about demonstrating excellence and inspiring others to higher standards."
-    ],
-    scenario: {
-      title: "Communicating a Critical Equipment Failure",
-      description: "Reporting a chiller failure to operations and management",
-      situation: "At 6:00 AM, Chiller #1 trips on high discharge pressure. The building will lose cooling capacity by 9:00 AM when occupancy begins. You must: 1) Document the failure clearly in the Chiller Log, 2) Email operations and management with situation, impact, and estimated restoration time, 3) Coordinate with HVAC contractor for emergency service, 4) Provide hourly updates, 5) Debrief after resolution with lessons learned. Your communication must be clear, factual, and solution-focused."
-    },
-    standards: {
-      title: "Professional Communication Standards",
-      items: [
-        "Document all system issues clearly: What happened, when, current status, impact, actions taken",
-        "Use professional language in all logs and communications—no slang, abbreviations, or unclear terminology",
-        "Escalate critical issues immediately to supervisors—don't wait for scheduled reports",
-        "Provide solution-focused communication: state problem, describe actions, estimate timeline",
-        "Respond to emails and requests within 4 hours during business hours",
-        "Own mistakes honestly—focus on corrective actions, not blame",
-        "Give credit to team members for contributions and solutions",
-        "Maintain calm, professional demeanor during high-stress situations"
-      ]
-    },
-    quiz: [
-      {
-        id: 1,
-        question: "What elements should a professional fault report include?",
-        type: "multiple-choice",
-        options: [
-          "Just 'it's broken'",
-          "Equipment ID, timestamp, symptoms, readings, actions taken, current status, estimated impact, and next steps",
-          "Only who to blame",
-          "Personal opinions"
-        ],
-        correctAnswer: 1,
-        explanation: "Effective fault reports include: 1) Equipment identification, 2) Exact time issue discovered, 3) Specific symptoms and abnormal readings, 4) Actions already taken, 5) Current operational status, 6) Impact on facility/occupants, 7) Estimated resolution timeline, 8) Next steps and resources needed. This enables informed decision-making."
-      },
-      {
-        id: 2,
-        question: "When should you escalate an equipment issue to your supervisor?",
-        type: "multiple-choice",
-        options: [
-          "Never—handle everything yourself",
-          "Immediately for: safety hazards, critical equipment failures, regulatory violations, situations beyond your authority/expertise",
-          "Only at the end of the month",
-          "When you feel like it"
-        ],
-        correctAnswer: 1,
-        explanation: "Escalate immediately when: 1) Life-safety hazard exists, 2) Critical equipment fails (impacts operations/occupants), 3) Regulatory compliance is at risk, 4) Issue exceeds your authority or expertise, 5) Costs will exceed budget authority, 6) Management notification is required. Early escalation enables better resource allocation and decision-making."
-      },
-      {
-        id: 3,
-        question: "Which demonstrates virtuous behavior when you make an operational mistake?",
-        type: "multiple-choice",
-        options: [
-          "Hide it and hope no one notices",
-          "Immediately report the mistake honestly, explain what happened, take responsibility, and propose corrective actions",
-          "Blame equipment malfunction",
-          "Wait until someone discovers it"
-        ],
-        correctAnswer: 1,
-        explanation: "Virtuous response to mistakes: 1) Report immediately and honestly, 2) Take responsibility without excuses, 3) Explain what happened factually, 4) Describe corrective actions taken, 5) Propose preventive measures. This builds trust, enables learning, and prevents repeat issues. Hiding mistakes compromises safety and integrity."
-      },
-      {
-        id: 4,
-        question: "How should you communicate during a tense interaction with a frustrated building occupant?",
-        type: "multiple-choice",
-        options: [
-          "Get defensive and argumentative",
-          "Listen actively, acknowledge concerns, explain situation calmly, provide timeline, and follow up—remain professional regardless of their tone",
-          "Ignore them",
-          "Tell them it's not your problem"
-        ],
-        correctAnswer: 1,
-        explanation: "De-escalation technique: 1) Listen without interrupting, 2) Acknowledge their concern/frustration, 3) Explain situation in simple terms, 4) Provide realistic timeline, 5) Offer to follow up, 6) Remain calm and professional regardless of their tone. You represent the facility—professionalism builds credibility and resolves conflicts."
-      }
-    ],
-    reflectionPrompt: "Reflect on a time when clear communication prevented or resolved a facility crisis. What specific communication behaviors made the difference?",
-    keyTakeaways: [
-      "Professional communication requires clarity, accuracy, timeliness, and solution focus",
-      "Fault reports must include: equipment ID, timeline, symptoms, actions, status, impact, next steps",
-      "Escalate immediately when issues involve safety, critical equipment, compliance, or exceed your authority",
-      "Virtuous behaviors (discipline, accountability, honesty) build trust and operational excellence",
-      "Own mistakes honestly—focus on solutions and prevention, not blame or excuses",
-      "De-escalation requires active listening, empathy, calm explanation, and professional demeanor",
-      "Leadership is demonstrated through consistent excellence, integrity, and inspiring others to higher standards"
-    ]
-  },
-
-  10: {
-    id: 10,
-    title: "Inventory & Sustainable Scaling",
-    objective: "Manage facility inventory, control costs, implement sustainable practices, and scale operations efficiently",
-    duration: "90 minutes",
-    narrationScript: [
-      "Effective inventory management balances equipment availability with cost control and sustainability.",
-      "Understanding spare parts management, vendor relationships, and energy-saving strategies is critical for long-term facility performance.",
-      "This module teaches inventory tracking systems, cost controls, KPI monitoring, and responsible scaling practices.",
-      "You'll learn how to integrate inventory management with the Nexum Suum dashboards for complete operational visibility.",
-      "Sustainable operations aren't just environmentally responsible—they're financially smart and future-focused."
-    ],
-    scenario: {
-      title: "Emergency Part Procurement During Chiller Failure",
-      description: "Managing inventory and vendor coordination during equipment crisis",
-      situation: "Chiller #2's oil heater has failed. The part is not in stock, and the chiller cannot operate safely without it. You need to: 1) Search inventory system for alternative solutions, 2) Contact vendors for emergency pricing and availability, 3) Evaluate rental chiller vs. repair costs, 4) Get management approval for unbudgeted expense, 5) Coordinate delivery and contractor scheduling, 6) Update inventory records and document lessons learned to prevent future stockouts of critical parts."
-    },
-    standards: {
-      title: "Inventory & Sustainability Standards",
-      items: [
-        "Maintain accurate inventory records—update immediately when parts are used or received",
-        "Stock critical spare parts for equipment with long lead times or high failure impact",
-        "Track inventory costs—identify opportunities for standardization and bulk purchasing",
-        "Establish vendor relationships before emergencies—know lead times and emergency service capabilities",
-        "Monitor energy KPIs monthly: kWh/sq ft, steam lb/production unit, water gallons/occupant",
-        "Identify and implement energy-saving opportunities: LED lighting, VFDs, controls optimization",
-        "Dispose of hazardous materials properly—never bypass environmental regulations for convenience",
-        "Document cost-saving and sustainability initiatives in annual facility reports"
-      ]
-    },
-    quiz: [
-      {
-        id: 1,
-        question: "What criteria should guide decisions on which spare parts to stock?",
-        type: "multiple-choice",
-        options: [
-          "Stock everything possible",
-          "Critical equipment impact, lead time, failure probability, and cost of downtime vs. cost of stocking",
-          "Only stock the cheapest parts",
-          "Never stock anything"
-        ],
-        correctAnswer: 1,
-        explanation: "Stock parts when: 1) Equipment is critical to operations, 2) Lead time is long (weeks/months), 3) Failure probability is moderate to high, 4) Downtime cost exceeds stocking cost. Use risk matrix: High-criticality + Long lead time + Moderate failure rate = Stock the part."
-      },
-      {
-        id: 2,
-        question: "How can facility operators contribute to energy cost reduction?",
-        type: "multiple-choice",
-        options: [
-          "Run all equipment 24/7",
-          "Optimize schedules, fix leaks promptly, maintain equipment efficiency, eliminate simultaneous heating/cooling, and implement setback strategies",
-          "Turn everything off permanently",
-          "Energy reduction is not an operator responsibility"
-        ],
-        correctAnswer: 1,
-        explanation: "Operators drive energy savings through: 1) Optimized run schedules (avoid unnecessary operation), 2) Leak repair (compressed air, steam), 3) Maintaining efficiency (clean filters, proper ΔT, combustion tuning), 4) Eliminating waste (simultaneous heating/cooling, excessive lighting), 5) Temperature setbacks during unoccupied periods. Operators have the most direct impact on energy use."
-      },
-      {
-        id: 3,
-        question: "What is the purpose of tracking facility KPIs (Key Performance Indicators)?",
-        type: "multiple-choice",
-        options: [
-          "Just extra paperwork",
-          "To measure performance trends, identify improvement opportunities, benchmark against standards, and demonstrate value to management",
-          "To make spreadsheets look complicated",
-          "KPIs have no value"
-        ],
-        correctAnswer: 1,
-        explanation: "KPIs provide objective measurement of facility performance: energy consumption (kWh/sq ft), water use (gal/occupant), maintenance costs ($/sq ft), uptime %, response time, etc. Trending KPIs identifies improvement opportunities and demonstrates facility team value to leadership. What gets measured gets managed."
-      },
-      {
-        id: 4,
-        question: "Why is vendor relationship management important for facility operations?",
-        type: "multiple-choice",
-        options: [
-          "It's not important",
-          "Strong vendor relationships ensure faster emergency response, better pricing, priority service, technical support, and long-term partnership benefits",
-          "To get free lunches",
-          "Vendors should be treated as adversaries"
-        ],
-        correctAnswer: 1,
-        explanation: "Strategic vendor partnerships provide: 1) Faster emergency response and priority scheduling, 2) Better pricing through relationship and volume, 3) Technical expertise and training, 4) Extended payment terms and warranty support, 5) Innovation insights and product updates. Treat vendors as partners, not just suppliers."
-      }
-    ],
-    reflectionPrompt: "Calculate your facility's current energy cost per square foot. Identify three specific actions you could implement to reduce that cost by 10% over the next year.",
-    keyTakeaways: [
-      "Stock critical spare parts based on equipment criticality, lead time, and failure probability",
-      "Accurate inventory tracking prevents stockouts, controls costs, and enables data-driven purchasing",
-      "Energy cost reduction is operator-driven: optimize schedules, fix leaks, maintain efficiency, eliminate waste",
-      "Track KPIs (energy/sq ft, uptime %, maintenance cost, response time) to measure and demonstrate value",
-      "Vendor partnerships provide emergency response, better pricing, technical support, and competitive advantage",
-      "Sustainable practices (energy efficiency, waste reduction, proper disposal) are environmentally and financially smart",
-      "Integration with Nexum Suum dashboards provides complete operational visibility and decision support"
+      "Lead with the bottom line—issue, recommendation, impact",
+      "Quantify impacts in terms leadership understands: dollars, time, risk",
+      "Present options with honest trade-offs, not just your preferred solution",
+      "Use plain language and avoid technical jargon that obscures meaning",
+      "Acknowledge uncertainty—do not oversell or understate",
+      "Be prepared to defend your recommendations with evidence and reasoning"
     ]
   }
 };
