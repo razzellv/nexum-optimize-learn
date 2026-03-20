@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Award, TrendingUp, ShieldCheck, GraduationCap } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Award, TrendingUp, ShieldCheck, GraduationCap, BookOpen, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLMSAuth } from "@/hooks/useAuth";
 
 interface HeroProps {
   onGetStarted: () => void;
@@ -9,107 +11,76 @@ interface HeroProps {
 
 export const Hero = ({ onGetStarted, onViewCurriculum }: HeroProps) => {
   const navigate = useNavigate();
+  const { user, isReadOnly } = useLMSAuth();
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-hero">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
       </div>
-
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto text-center space-y-8">
-          {/* Logo/Brand */}
-          <div className="inline-flex items-center justify-center space-x-2 mb-4">
-            <div className="w-12 h-12 gradient-secondary rounded-lg flex items-center justify-center shadow-glow">
-              <Award className="w-7 h-7 text-secondary-foreground" />
+          <div className="inline-flex items-center justify-center gap-3 mb-2">
+            <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center">
+              <BookOpen className="w-6 h-6 text-primary" />
             </div>
-            <h2 className="text-2xl font-bold text-primary-foreground">Nexum Suum</h2>
+            <div className="text-left">
+              <p className="text-xs text-muted-foreground uppercase tracking-widest">Nexum Suum</p>
+              <h2 className="text-lg font-bold text-foreground leading-none">Optimize & Learn™</h2>
+            </div>
           </div>
-
-          {/* Main headline */}
-          <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground leading-tight">
-            Compliance & Optimization
-            <span className="block mt-2 bg-gradient-to-r from-secondary via-accent to-secondary bg-clip-text text-transparent animate-pulse">
-              Training Series
-            </span>
+          {user && (
+            <div className="flex items-center justify-center gap-2">
+              <Badge variant="outline" className="border-primary/30 text-primary text-xs">{user.role?.toUpperCase()}</Badge>
+              <span className="text-sm text-muted-foreground">Welcome back, {user.name.split(' ')[0]}</span>
+              {isReadOnly && <Badge variant="outline" className="text-xs">View Only</Badge>}
+            </div>
+          )}
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight text-foreground">
+            Compliance & <span className="text-primary">Optimization</span>
+            <span className="block mt-2 text-foreground/80 text-4xl md:text-5xl">Training Series</span>
           </h1>
-
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed">
-            Master facility engineering with AI-powered training that combines technical excellence, 
-            regulatory compliance, and forward-thinking leadership for the engineer of 2035.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Master facility engineering with AI-powered training combining technical excellence,
+            regulatory compliance, and forward-thinking leadership.
           </p>
-
-          {/* Free Apprentice Program Banner */}
-          <div 
-            onClick={() => navigate('/apprentice')}
-            className="inline-flex items-center gap-3 bg-success/20 border border-success/40 rounded-full px-6 py-3 cursor-pointer hover:bg-success/30 transition-all"
-          >
+          <div onClick={() => navigate('/apprentice')}
+            className="inline-flex items-center gap-3 bg-success/10 border border-success/30 rounded-full px-6 py-3 cursor-pointer hover:bg-success/20 transition-all group">
             <GraduationCap className="w-5 h-5 text-success" />
-            <span className="text-primary-foreground font-medium">
-              Free: Facility Intelligence Apprentice Certification
-            </span>
-            <ArrowRight className="w-4 h-4 text-success" />
+            <span className="text-sm font-medium text-foreground">Free: Facility Intelligence Apprentice Certification</span>
+            <ArrowRight className="w-4 h-4 text-success group-hover:translate-x-1 transition-transform" />
           </div>
-
-          {/* Feature highlights */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-8">
-            <div className="bg-card/10 backdrop-blur-sm border border-primary-foreground/20 rounded-lg p-6 transition-smooth hover:shadow-glow">
-              <TrendingUp className="w-10 h-10 text-secondary mx-auto mb-3" />
-              <h3 className="text-lg font-semibold text-primary-foreground mb-2">Performance Optimization</h3>
-              <p className="text-primary-foreground/80 text-sm">Maximize efficiency across boilers, chillers, HVAC, and electrical systems</p>
-            </div>
-            
-            <div className="bg-card/10 backdrop-blur-sm border border-primary-foreground/20 rounded-lg p-6 transition-smooth hover:shadow-glow">
-              <ShieldCheck className="w-10 h-10 text-accent mx-auto mb-3" />
-              <h3 className="text-lg font-semibold text-primary-foreground mb-2">Full Compliance</h3>
-              <p className="text-primary-foreground/80 text-sm">Master OSHA, EPA, FDA, ASME, and state-specific regulations</p>
-            </div>
-            
-            <div className="bg-card/10 backdrop-blur-sm border border-primary-foreground/20 rounded-lg p-6 transition-smooth hover:shadow-glow">
-              <Award className="w-10 h-10 text-success mx-auto mb-3" />
-              <h3 className="text-lg font-semibold text-primary-foreground mb-2">Leadership Excellence</h3>
-              <p className="text-primary-foreground/80 text-sm">Develop decision-making skills for critical facility operations</p>
-            </div>
+          <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto pt-6">
+            {[
+              { icon: TrendingUp, color: 'text-primary', bg: 'bg-primary/10 border-primary/20', title: 'Performance Optimization', desc: 'Maximize efficiency across all critical facility systems' },
+              { icon: ShieldCheck, color: 'text-success', bg: 'bg-success/10 border-success/20', title: 'Full Compliance', desc: 'Master OSHA, EPA, FDA, ASME, and state regulations' },
+              { icon: Award, color: 'text-yellow-400', bg: 'bg-yellow-400/10 border-yellow-400/20', title: 'Leadership Excellence', desc: 'Develop decision-making skills for critical operations' },
+            ].map(({ icon: Icon, color, bg, title, desc }) => (
+              <div key={title} className={`rounded-xl p-6 border ${bg} hover:scale-[1.02] transition-transform`}>
+                <Icon className={`w-9 h-9 mx-auto mb-3 ${color}`} />
+                <h3 className="text-sm font-semibold text-foreground mb-2">{title}</h3>
+                <p className="text-xs text-muted-foreground">{desc}</p>
+              </div>
+            ))}
           </div>
-
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-            <Button 
-              variant="secondary" 
-              size="lg" 
-              onClick={onGetStarted}
-              className="text-lg px-8 py-6 shadow-glow hover:scale-105 transition-bounce"
-            >
-              Begin Training
-              <ArrowRight className="ml-2" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+            <Button size="lg" onClick={onGetStarted} className="text-base px-8 py-6">
+              <Zap className="w-5 h-5 mr-2" />
+              {isReadOnly ? 'View Training' : 'Begin Training'}
+              <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              onClick={onViewCurriculum}
-              className="text-lg px-8 py-6 bg-card/20 backdrop-blur-sm border-primary-foreground/30 text-primary-foreground hover:bg-card/30"
-            >
+            <Button variant="outline" size="lg" onClick={onViewCurriculum} className="text-base px-8 py-6 border-primary/30">
               View Curriculum
             </Button>
           </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-12 border-t border-primary-foreground/20">
-            <div>
-              <div className="text-3xl font-bold text-secondary">10</div>
-              <div className="text-sm text-primary-foreground/70">Modules</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-accent">~10hrs</div>
-              <div className="text-sm text-primary-foreground/70">Total Duration</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-success">8+</div>
-              <div className="text-sm text-primary-foreground/70">Standards Covered</div>
-            </div>
+          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-10 border-t border-border/40">
+            {[{ value: '10+', label: 'Modules' }, { value: '~12hrs', label: 'Total Duration' }, { value: '8+', label: 'Standards Covered' }].map(({ value, label }) => (
+              <div key={label}>
+                <div className="text-3xl font-bold text-primary">{value}</div>
+                <div className="text-xs text-muted-foreground mt-1">{label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
