@@ -4,6 +4,7 @@ import { hvacModules } from "./hvacModules";
 import { thermodynamicsModules } from "./thermodynamicsModules";
 import { specialistModules } from "./specialistModules";
 import { facilityIntelligenceModules } from "./facilityIntelligenceModules";
+import { newEquipmentModules } from "./newEquipmentModules";
 
 export const courses: Course[] = [
   {
@@ -21,19 +22,25 @@ export const courses: Course[] = [
   {
     id: "thermodynamics-tech",
     title: "HVAC Thermodynamics & Smart Technology Integration",
-    description: "Master thermodynamics principles, heat transfer, HVAC history, and AI/IoT integration in modern climate control systems",
+    description: "Master thermodynamics principles, heat transfer, and AI/IoT integration in modern climate control systems",
     modules: thermodynamicsModules,
   },
   {
     id: "career-specialist",
     title: "Career Specialist Assessment",
-    description: "Comprehensive aptitude assessment to discover your ideal career paths based on your unique strengths, values, and aspirations",
+    description: "Comprehensive aptitude assessment to discover your ideal career paths",
     modules: specialistModules,
   },
   {
     id: "facility-intelligence",
     title: "Facility Intelligence Engineer Certification",
-    description: "Comprehensive training on the Nexum Suum SaaS ecosystem and real facility operations—from VVFI to boilers, chillers, compliance, emergency protocols, and professional leadership",
+    description: "Comprehensive training on the Nexum Suum SaaS ecosystem and real facility operations",
     modules: facilityIntelligenceModules,
+  },
+  {
+    id: "new-equipment-systems",
+    title: "Advanced Equipment Systems Operations",
+    description: "Heat exchangers, turbines, hot water heaters, condensate systems, generators/CHP, RO systems, and WFI pharmaceutical water systems",
+    modules: newEquipmentModules,
   },
 ];
