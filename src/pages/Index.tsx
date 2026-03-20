@@ -11,88 +11,65 @@ import { hvacModuleContent } from "@/data/hvacModuleContent";
 import { thermodynamicsModuleContent } from "@/data/thermodynamicsModuleContent";
 import { specialistModuleContent } from "@/data/specialistModuleContent";
 import { facilityIntelligenceModuleContent } from "@/data/facilityIntelligenceModuleContent";
+import { newEquipmentModuleContent } from "@/data/newEquipmentModules";
 import { useUserProgress } from "@/hooks/useUserProgress";
+import { useLMSAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Rss, Video, RotateCcw } from "lucide-react";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
+  AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
+  AlertDialogDescription, AlertDialogFooter, AlertDialogHeader,
+  AlertDialogTitle, AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useNavigate } from "react-router-dom";
 
 type View = 'hero' | 'courses' | 'dashboard' | 'module' | 'final-exam' | 'certificate';
 
+const COURSE_CONTENT_MAP: Record<string, Record<number, any>> = {
+  'facility-optimization':  moduleContent,
+  'hvac-optimization':      hvacModuleContent,
+  'thermodynamics-tech':    thermodynamicsModuleContent,
+  'career-specialist':      specialistModuleContent,
+  'facility-intelligence':  facilityIntelligenceModuleContent,
+  'new-equipment-systems':  newEquipmentModuleContent,
+};
+
 const Index = () => {
   const navigate = useNavigate();
   const { getCourseModules, getCourseProgress, loading: progressLoading, saveProgress, resetProgress } = useUserProgress();
+  const { isReadOnly } = useLMSAuth();
   const [currentView, setCurrentView] = useState<View>('hero');
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [selectedModuleId, setSelectedModuleId] = useState<number | null>(null);
 
-  // Show loading while initializing
   if (progressLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4" />
+          <p className="text-muted-foreground text-sm">Loading...</p>
         </div>
       </div>
     );
   }
 
-  const handleGetStarted = () => {
-    setCurrentView('courses');
-  };
-
-  const handleViewCurriculum = () => {
-    setCurrentView('courses');
-  };
-
-  const handleSelectCourse = (courseId: string) => {
-    setSelectedCourseId(courseId);
-    setCurrentView('dashboard');
-  };
-
-  const handleModuleSelect = (moduleId: number) => {
-    setSelectedModuleId(moduleId);
-    setCurrentView('module');
-  };
-
-  const handleBackToDashboard = () => {
-    setCurrentView('dashboard');
-    setSelectedModuleId(null);
-  };
-
-  const handleBackToCourses = () => {
-    setSelectedCourseId(null);
-    setCurrentView('courses');
-  };
+  const handleGetStarted     = () => setCurrentView('courses');
+  const handleViewCurriculum = () => setCurrentView('courses');
+  const handleSelectCourse   = (courseId: string) => { setSelectedCourseId(courseId); setCurrentView('dashboard'); };
+  const handleModuleSelect   = (moduleId: number) => { setSelectedModuleId(moduleId); setCurrentView('module'); };
+  const handleBackToDashboard = () => { setCurrentView('dashboard'); setSelectedModuleId(null); };
+  const handleBackToCourses   = () => { setSelectedCourseId(null); setCurrentView('courses'); };
 
   const handleModuleComplete = async () => {
     if (selectedModuleId === null || !selectedCourseId) return;
-
-    // Save progress (session-based)
-    saveProgress(selectedCourseId, selectedModuleId);
-    
-    const updatedModules = getCourseModules(selectedCourseId);
-    
-    // Check if all modules in current course are completed
-    const allCompleted = updatedModules.every(m => m.completed);
-    
-    if (allCompleted) {
-      toast.success("Course completed! All modules finished.");
+    if (!isReadOnly) saveProgress(selectedCourseId, selectedModuleId);
+    const allCompleted = getCourseModules(selectedCourseId).every(m => m.completed);
+    if (allCompleted && !isReadOnly) {
+      toast.success("Course completed!");
       handleBackToCourses();
     } else {
-      toast.success("Module completed! Next module unlocked.");
+      toast.success(isReadOnly ? "Module viewed." : "Module completed!");
       handleBackToDashboard();
     }
   };
@@ -100,180 +77,92 @@ const Index = () => {
   const handleFinalExamComplete = (passed: boolean, score: number) => {
     if (passed) {
       toast.success(`Congratulations! You passed with ${score.toFixed(1)}%`);
-      setTimeout(() => {
-        setCurrentView('certificate');
-      }, 2000);
+      setTimeout(() => setCurrentView('certificate'), 2000);
     } else {
       toast.error(`Not passed. Score: ${score.toFixed(1)}%`);
     }
   };
 
-  const handleStartFinalExam = () => {
-    setCurrentView('final-exam');
-  };
+  const NavButtons = () => (
+    <div className="absolute top-4 right-4 z-50 flex gap-2">
+      <Button variant="outline" size="sm" onClick={() => navigate('/feed')}><Rss className="w-4 h-4 mr-2" />Industry Feed</Button>
+      <Button variant="outline" size="sm" onClick={() => navigate('/videos')}><Video className="w-4 h-4 mr-2" />Videos</Button>
+    </div>
+  );
 
   const renderView = () => {
     switch (currentView) {
       case 'hero':
-        return (
-          <>
-            <div className="absolute top-4 right-4 z-50 flex gap-2">
-              <Button variant="outline" size="sm" onClick={() => navigate('/feed')}>
-                <Rss className="w-4 h-4 mr-2" />
-                Industry Feed
-              </Button>
-              <Button variant="outline" size="sm" onClick={() => navigate('/videos')}>
-                <Video className="w-4 h-4 mr-2" />
-                Videos
-              </Button>
-            </div>
-            <Hero onGetStarted={handleGetStarted} onViewCurriculum={handleViewCurriculum} />
-          </>
-        );
-      
-      case 'courses':
+        return <><NavButtons /><Hero onGetStarted={handleGetStarted} onViewCurriculum={handleViewCurriculum} /></>;
+
+      case 'courses': {
         const courseProgressMap = courses.reduce((acc, course) => {
-          const progress = getCourseProgress(course.id);
-          acc[course.id] = progress;
+          acc[course.id] = getCourseProgress(course.id);
           return acc;
         }, {} as Record<string, { completed: number; total: number }>);
-
-        const allCoursesCompleted = courses.every(c => {
-          const progress = courseProgressMap[c.id];
-          return progress.completed === progress.total;
-        });
-
         return (
           <>
             <div className="absolute top-4 right-4 z-50 flex gap-2">
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="outline" size="sm">
-                    <RotateCcw className="w-4 h-4 mr-2" />
-                    Reset Progress
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Reset All Progress?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This will clear all your course progress and start fresh. This action cannot be undone.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => {
-                      resetProgress();
-                      setCurrentView('hero');
-                      toast.success("Progress has been reset");
-                    }}>
-                      Reset
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-              <Button variant="outline" size="sm" onClick={() => navigate('/feed')}>
-                <Rss className="w-4 h-4 mr-2" />
-                Industry Feed
-              </Button>
-              <Button variant="outline" size="sm" onClick={() => navigate('/videos')}>
-                <Video className="w-4 h-4 mr-2" />
-                Videos
-              </Button>
+              {!isReadOnly && (
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="outline" size="sm"><RotateCcw className="w-4 h-4 mr-2" />Reset Progress</Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Reset All Progress?</AlertDialogTitle>
+                      <AlertDialogDescription>This will clear all your course progress. This action cannot be undone.</AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={() => { resetProgress(); setCurrentView('hero'); toast.success("Progress reset"); }}>Reset</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              )}
+              <NavButtons />
             </div>
-            <CourseSelector
-              courses={courses}
-              onSelectCourse={handleSelectCourse}
-              courseProgress={courseProgressMap}
-            />
-            {allCoursesCompleted && (
-              <div className="fixed bottom-8 right-8">
-                <Button size="lg" onClick={handleStartFinalExam}>
-                  Take Final Exam
-                </Button>
-              </div>
-            )}
+            <CourseSelector courses={courses} onSelectCourse={handleSelectCourse} courseProgress={courseProgressMap} />
           </>
         );
-      
-      case 'dashboard':
+      }
+
+      case 'dashboard': {
         if (!selectedCourseId) return null;
-        const currentModules = getCourseModules(selectedCourseId);
         return (
           <>
             <div className="absolute top-4 left-4 z-50">
-              <Button variant="outline" size="sm" onClick={handleBackToCourses}>
-                ← Back to Courses
-              </Button>
+              <Button variant="outline" size="sm" onClick={handleBackToCourses}>← Back to Courses</Button>
             </div>
-            <div className="absolute top-4 right-4 z-50 flex gap-2">
-              <Button variant="outline" size="sm" onClick={() => navigate('/feed')}>
-                <Rss className="w-4 h-4 mr-2" />
-                Industry Feed
-              </Button>
-              <Button variant="outline" size="sm" onClick={() => navigate('/videos')}>
-                <Video className="w-4 h-4 mr-2" />
-                Videos
-              </Button>
-            </div>
-            <ModuleDashboard 
-              modules={currentModules} 
-              onModuleSelect={handleModuleSelect} 
-            />
+            <NavButtons />
+            <ModuleDashboard modules={getCourseModules(selectedCourseId)} onModuleSelect={handleModuleSelect} />
           </>
         );
-      
-      case 'module':
+      }
+
+      case 'module': {
         if (selectedModuleId === null || !selectedCourseId) return null;
-        
-        // Map course ID to content
-        let contentMap;
-        if (selectedCourseId === "facility-optimization") {
-          contentMap = moduleContent;
-        } else if (selectedCourseId === "hvac-optimization") {
-          contentMap = hvacModuleContent;
-        } else if (selectedCourseId === "thermodynamics-tech") {
-          contentMap = thermodynamicsModuleContent;
-        } else if (selectedCourseId === "career-specialist") {
-          contentMap = specialistModuleContent;
-        } else {
-          contentMap = {};
-        }
-        
-        const content = contentMap[selectedModuleId];
+        const content = (COURSE_CONTENT_MAP[selectedCourseId] || {})[selectedModuleId];
         if (!content) {
           return (
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="text-center">
-                <h2 className="text-2xl font-bold mb-4">Module content not yet available</h2>
-                <p className="text-muted-foreground mb-6">This module content is being developed.</p>
+            <div className="min-h-screen flex items-center justify-center bg-background">
+              <div className="text-center space-y-4">
+                <h2 className="text-2xl font-bold">Module content coming soon</h2>
+                <p className="text-muted-foreground">This module is being developed.</p>
                 <Button onClick={handleBackToDashboard}>Back to Dashboard</Button>
               </div>
             </div>
           );
         }
-        return (
-          <ModuleViewer 
-            content={content}
-            onBack={handleBackToDashboard}
-            onComplete={handleModuleComplete}
-          />
-        );
-      
+        return <ModuleViewer content={content} onBack={handleBackToDashboard} onComplete={handleModuleComplete} />;
+      }
+
       case 'final-exam':
         return <FinalExam onComplete={handleFinalExamComplete} onBack={handleBackToCourses} />;
-      
+
       case 'certificate':
-        return (
-          <CompletionCertificate 
-            completionDate={new Date().toLocaleDateString('en-US', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}
-          />
-        );
-      
+        return <CompletionCertificate completionDate={new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} />;
+
       default:
         return <Hero onGetStarted={handleGetStarted} onViewCurriculum={handleViewCurriculum} />;
     }
