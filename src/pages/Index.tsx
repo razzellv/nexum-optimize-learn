@@ -12,6 +12,7 @@ import { thermodynamicsModuleContent } from "@/data/thermodynamicsModuleContent"
 import { specialistModuleContent } from "@/data/specialistModuleContent";
 import { facilityIntelligenceModuleContent } from "@/data/facilityIntelligenceModuleContent";
 import { newEquipmentModuleContent } from "@/data/newEquipmentModules";
+import { facilityIntelligenceIIModuleContent } from "@/data/facilityIntelligenceIIModuleContent";
 import { useUserProgress } from "@/hooks/useUserProgress";
 import { useLMSAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
@@ -33,6 +34,7 @@ const COURSE_CONTENT_MAP: Record<string, Record<number, any>> = {
   'career-specialist':      specialistModuleContent,
   'facility-intelligence':  facilityIntelligenceModuleContent,
   'new-equipment-systems':  newEquipmentModuleContent,
+  'facility-intelligence-ii': facilityIntelligenceIIModuleContent,
 };
 
 const Index = () => {
