@@ -41,7 +41,7 @@ const Compliance = () => {
     if (!user) return;
     
     const { data, error } = await supabase
-      .rpc('has_role', { _user_id: user.id, _role: 'admin' });
+      .rpc('has_role', { _user_id: user.sub, _role: 'admin' });
     
     if (!error && data) {
       setIsAdmin(true);
@@ -155,7 +155,7 @@ const Compliance = () => {
             file_name: sanitizedName,
             file_path: filePath,
             file_url: publicUrl,
-            uploaded_by: user?.id,
+            uploaded_by: user?.sub,
           });
 
         if (dbError) throw dbError;
