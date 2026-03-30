@@ -5,6 +5,7 @@ import { thermodynamicsModules } from "./thermodynamicsModules";
 import { specialistModules } from "./specialistModules";
 import { facilityIntelligenceModules } from "./facilityIntelligenceModules";
 import { newEquipmentModules } from "./newEquipmentModules";
+import { facilityIntelligenceIIModules } from "./facilityIntelligenceIIModules";
 
 export const courses: Course[] = [
   {
@@ -42,5 +43,11 @@ export const courses: Course[] = [
     title: "Advanced Equipment Systems Operations",
     description: "Heat exchangers, turbines, hot water heaters, condensate systems, generators/CHP, RO systems, and WFI pharmaceutical water systems",
     modules: newEquipmentModules,
+  },
+  {
+    id: "facility-intelligence-ii",
+    title: "Facility Intelligence Certification II: Data to Decisions",
+    description: "Transform operational data into structured intelligence for tracking inefficiencies, risk, depreciation, decision fatigue, and performance across government, retail, industrial, and manufacturing sectors",
+    modules: facilityIntelligenceIIModules,
   },
 ];
